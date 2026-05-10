@@ -11,15 +11,7 @@ A production-grade, cinematic portfolio experience with a terminal-inspired inte
 
 <br />
 
-<img src="./preview.png" alt="Project preview" width="100%" />
-
-</div>
-
-
-## Live Website
-
-https://sj-builds-shreyansh-portfolio.vercel.app
-
+[![Live Website](https://img.shields.io/badge/Live-Portfolio-8A2BE2?style=for-the-badge)]([https://sj-builds-shreyansh-portfolio.vercel.app/])
 
 ## Overview
 
