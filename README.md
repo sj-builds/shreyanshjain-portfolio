@@ -11,10 +11,17 @@ A production-grade, cinematic portfolio experience with a terminal-inspired inte
 
 <br />
 
-<img src="./preview.png" alt="Project preview" width="100%" />
+<p align="center">
+  <a href="https://sj-builds-shreyansh-portfolio.vercel.app">
+    <img
+      src="./preview.gif"
+      alt="Portfolio Preview"
+      width="100%"
+    />
+  </a>
+</p>
 
 </div>
-
 
 ## Live Website
 
