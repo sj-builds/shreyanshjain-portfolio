@@ -1,0 +1,31 @@
+{
+  "name": "Shreyansh Jain",
+  "handle": "shreyansh.sys",
+  "roles": ["Cybersecurity Enthusiast", "BCA Student", "Future Ethical Hacker"],
+  "typing": ["Python", "SQL", "Cybersecurity", "Networking", "AI Tools"],
+  "bio": "I architect secure systems and break them — exploring the seams between code, networks, and intelligence. Currently pursuing BCA, training as an ethical hacker, and building tools that defend the digital frontier.",
+  "location": "New Delhi, India",
+  "email": "jshreyansh962@gmail.com",
+  "phone": "+91 8076420936",
+  "resumeUrl": "/resume.pdf",
+  "experience": [
+    {
+      "year": "2025",
+      "title": "Security Research Intern",
+      "org": "CyberLab Collective",
+      "summary": "Vulnerability analysis on web targets, wrote Python automation for recon pipelines."
+    },
+    {
+      "year": "2024",
+      "title": "Open Source Contributor",
+      "org": "Self-directed",
+      "summary": "Shipped network scanning utilities and SQL data tools used by peers."
+    },
+    {
+      "year": "2023",
+      "title": "BCA Program",
+      "org": "University",
+      "summary": "Began deep dive into networking, OS internals, and applied cryptography."
+    }
+  ]
+}

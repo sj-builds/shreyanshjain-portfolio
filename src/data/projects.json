@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Cybersecurity Toolkit",
+    "tag": "SECURITY / PYTHON",
+    "summary": "Modular offensive + defensive utilities: port enumeration, payload crafting, log forensics.",
+    "tech": ["Python", "Scapy", "SQLite"],
+    "status": "ACTIVE"
+  },
+  {
+    "title": "AI Assistant",
+    "tag": "AI / LLM",
+    "summary": "Local-first AI assistant with tool routing, memory, and a terminal-grade interface.",
+    "tech": ["Python", "LangChain", "FastAPI"],
+    "status": "BETA"
+  },
+  {
+    "title": "SQL Dashboard",
+    "tag": "DATA / WEB",
+    "summary": "Realtime analytics surface for query plans, slow logs, and access audit trails.",
+    "tech": ["React", "SQL", "TS"],
+    "status": "LIVE"
+  },
+  {
+    "title": "Network Scanner",
+    "tag": "NETWORK / RECON",
+    "summary": "Async multi-host scanner with fingerprinting and JSON reporting for blue teams.",
+    "tech": ["Python", "asyncio", "nmap"],
+    "status": "STABLE"
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Google Cybersecurity",
+    "issuer": "Coursera / Google",
+    "year": "2025",
+    "id": "GCS-2025-001"
+  },
+  {
+    "title": "CCNA: Introduction to Networks",
+    "issuer": "Cisco NetAcad",
+    "year": "2024",
+    "id": "CCNA-INT-2024"
+  },
+  {
+    "title": "Python for Everybody",
+    "issuer": "University of Michigan",
+    "year": "2024",
+    "id": "PY4E-2024"
+  },
+  { "title": "Linux Essentials", "issuer": "LPI", "year": "2023", "id": "LPI-LE-2023" }
+]

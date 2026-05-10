@@ -1,0 +1,10 @@
+[
+  { "name": "Python", "level": 88, "category": "Language" },
+  { "name": "SQL", "level": 82, "category": "Data" },
+  { "name": "Networking", "level": 78, "category": "Infrastructure" },
+  { "name": "Cybersecurity", "level": 85, "category": "Security" },
+  { "name": "Linux", "level": 80, "category": "Systems" },
+  { "name": "AI Tools", "level": 75, "category": "AI" },
+  { "name": "Bash", "level": 72, "category": "Systems" },
+  { "name": "Git", "level": 84, "category": "DevOps" }
+]
