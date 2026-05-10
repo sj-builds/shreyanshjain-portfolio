@@ -1,8 +1,44 @@
 [
-  { "label": "Email", "url": "mailto:jshreyansh962@gmail.com", "handle": "jshreyansh962@gmail.com" },
-  { "label": "Phone", "url": "tel:+918076420936", "handle": "+91 8076420936" },
-  { "label": "Location", "url": "https://maps.google.com/?q=New%20Delhi%2C%20India", "handle": "New Delhi, India" },
-  { "label": "GitHub", "url": "https://github.com/sj-builds", "handle": "sj-builds" },
-  { "label": "LinkedIn", "url": "https://www.linkedin.com/in/shreyanshjain-profile", "handle": "/in/shreyanshjain-profile" },
-  { "label": "Twitter/X", "url": "https://x.com/jshreyansh962", "handle": "@jshreyansh962" }
+  {
+    "label": "Email",
+    "icon": "Mail",
+    "url": "mailto:jshreyansh962@gmail.com",
+    "handle": "jshreyansh962@gmail.com",
+    "accent": "cyan"
+  },
+  {
+    "label": "Phone",
+    "icon": "Phone",
+    "url": "tel:+918076420936",
+    "handle": "+91 8076420936",
+    "accent": "violet"
+  },
+  {
+    "label": "Location",
+    "icon": "MapPin",
+    "url": "https://maps.google.com/?q=Uttam+Nagar+West+New+Delhi",
+    "handle": "Uttam Nagar West, New Delhi",
+    "accent": "blue"
+  },
+  {
+    "label": "GitHub",
+    "icon": "Github",
+    "url": "https://github.com/sj-builds",
+    "handle": "@sj-builds",
+    "accent": "purple"
+  },
+  {
+    "label": "LinkedIn",
+    "icon": "Linkedin",
+    "url": "https://www.linkedin.com/in/shreyanshjain-profile",
+    "handle": "shreyanshjain-profile",
+    "accent": "cyan"
+  },
+  {
+    "label": "X",
+    "icon": "Twitter",
+    "url": "https://x.com/jshreyansh962",
+    "handle": "@jshreyansh962",
+    "accent": "violet"
+  }
 ]

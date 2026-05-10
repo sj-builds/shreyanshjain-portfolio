@@ -46,14 +46,44 @@ export function Contact() {
     }
 
     setStatus("loading");
-    const subject = encodeURIComponent(`portfolio.contact // ${name || "anon"}`);
-    const body = encodeURIComponent(`${msg}\n\n— ${name} <${email}>`);
     try {
-      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      const response = await fetch("https://formspree.io/f/mlgzopqr", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMsg,
+          to: profile.email,
+        }),
+      });
+
+      if (!response.ok) {
+        let details = "";
+        try {
+          const data = (await response.json()) as { errors?: Array<{ message?: string }> };
+          const msg0 = data?.errors?.[0]?.message;
+          if (typeof msg0 === "string" && msg0.trim()) details = msg0.trim();
+        } catch {
+          // ignore JSON parsing failures; use generic message
+        }
+        throw new Error(details || `Submission failed (${response.status}).`);
+      }
+
+      setName("");
+      setEmail("");
+      setMsg("");
       setStatus("success");
-    } catch {
+    } catch (err) {
       setStatus("error");
-      setError("Unable to open your mail client. Please try again or contact via email/phone.");
+      const message =
+        err instanceof Error && err.message
+          ? err.message
+          : "Network error. Please try again in a moment.";
+      setError(message);
     }
   };
 
@@ -130,7 +160,9 @@ export function Contact() {
                       : "text-xs text-[oklch(0.75_0.18_150)]"
                   }
                 >
-                  {status === "error" ? error : "Transmission queued. Your mail client should open now."}
+                  {status === "error"
+                    ? error
+                    : "Secure transmission received. Response window: <24h."}
                 </div>
               )}
               <button
