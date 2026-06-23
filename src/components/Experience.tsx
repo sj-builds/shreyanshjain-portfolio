@@ -33,7 +33,7 @@ export function Experience() {
                   <div className="flex items-baseline justify-between gap-4 flex-wrap">
                     <h3 className="font-display text-2xl">{e.title}</h3>
                     <span className="font-mono text-xs tracking-widest text-[oklch(0.85_0.18_195)]">
-                      {e.year}
+                      {e.period}
                     </span>
                   </div>
                   <div className="mt-1 text-sm text-muted-foreground font-mono tracking-wide">
