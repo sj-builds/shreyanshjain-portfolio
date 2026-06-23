@@ -8,24 +8,31 @@
   "email": "jshreyansh962@gmail.com",
   "phone": "+91 8076420936",
   "resumeUrl": "/SHREYANSH_JAIN_RESUME.pdf",
-  "experience": [
+  "experience": 
+  [
     {
-      "year": "2025",
-      "title": "Security Research Intern",
-      "org": "CyberLab Collective",
-      "summary": "Vulnerability analysis on web targets, wrote Python automation for recon pipelines."
+      "period": "Jun 2026 - Present",
+      "title": "Ethical Hacking Intern",
+      "org": "EduSkills Academy",
+      "summary": "Developing practical offensive security skills through hands-on training in Linux, networking, web application security, penetration testing, and cybersecurity fundamentals."
     },
     {
-      "year": "2024",
-      "title": "Open Source Contributor",
-      "org": "Self-directed",
-      "summary": "Shipped network scanning utilities and SQL data tools used by peers."
+      "period": "Mar 2026 - Present",
+      "title": "Member",
+      "org": "Training & Placement Cell · MAIMS",
+      "summary": "Supporting campus recruitment initiatives by coordinating placement activities, student engagement, and career development programs."
     },
     {
-      "year": "2023",
-      "title": "BCA Program",
-      "org": "University",
-      "summary": "Began deep dive into networking, OS internals, and applied cryptography."
+      "period": "Aug 2025 - Present",
+      "title": "Bachelor of Computer Applications",
+      "org": "MAIMS · GGSIPU",
+      "summary": "Building a strong foundation in computer science with a focus on cybersecurity, Python, databases, networking, operating systems, and software development."
+    },
+    {
+      "period": "May 2025 - Jun 2025",
+      "title": "Data Analytics Intern",
+      "org": "K G S V & Co.",
+      "summary": "Applied Excel and analytical techniques to manage financial documentation, organize business data, and support professional accounting workflows."
     }
   ]
 }

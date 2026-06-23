@@ -149,7 +149,7 @@ UNLICENSED — All rights reserved.
 ## Contact
 
 - **GitHub**: https://github.com/sj-builds  
-- **LinkedIn**: https://www.linkedin.com/in/shreyanshjain-profile  
+- **LinkedIn**: https://www.linkedin.com/in/shreyanshjain-tech  
 - **X / Twitter**: https://x.com/jshreyansh962  
 - **Email**: jshreyansh962@gmail.com  
 
