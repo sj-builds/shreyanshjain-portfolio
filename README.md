@@ -12,7 +12,7 @@ A production-grade, cinematic portfolio experience with a terminal-inspired inte
 <br />
 
 <p align="center">
-  <a href="https://shreyanshjain-portfolio.vercel.app">
+  <a href="https://shreyanshjain.vercel.app">
     <img
       src="./preview.gif"
       alt="Portfolio Preview"
@@ -25,7 +25,7 @@ A production-grade, cinematic portfolio experience with a terminal-inspired inte
 
 ## Live Website
 
-https://shreyanshjain-portfolio.vercel.app/
+https://shreyanshjain.vercel.app/
 
 ## Overview
 
