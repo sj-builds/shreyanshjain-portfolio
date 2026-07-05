@@ -147,7 +147,7 @@ export function Hero() {
               className="mt-9 flex flex-wrap gap-3"
             >
               <a
-                href="#projects"
+                href="#about"
                 data-cursor="hover"
                 className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-xs tracking-[0.2em] text-background bg-gradient-to-r from-[oklch(0.85_0.18_195)] to-[oklch(0.72_0.22_295)] glow-violet hover:scale-[1.03] transition"
               >

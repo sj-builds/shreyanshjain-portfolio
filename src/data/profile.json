@@ -3,11 +3,18 @@
   "handle": "shreyansh.sys",
   "roles": ["Cybersecurity Enthusiast", "BCA Student", "Future Ethical Hacker"],
   "typing": ["Python", "SQL", "Cybersecurity", "Networking", "AI Tools"],
-  "bio": "I architect secure systems and break them — exploring the seams between code, networks, and intelligence. Currently pursuing BCA, training as an ethical hacker, and building tools that defend the digital frontier.",
+  "bio": "Cybersecurity student focused on ethical hacking, secure software development, and offensive security. Continuously building projects, solving real-world challenges, and strengthening practical security skills.",
+  "about": "My interest in cybersecurity comes from understanding how software, networks, and operating systems work—and how they can fail. I enjoy learning offensive security techniques, building secure applications, and solving practical security challenges. Currently pursuing a Bachelor of Computer Applications, I am continuously improving my skills through hands-on projects, ethical hacking training, and real-world experimentation. My goal is to become a security engineer who builds software that is secure by design.",
   "location": "New Delhi, India",
   "email": "jshreyansh962@gmail.com",
   "phone": "+91 8076420936",
-  "resumeUrl": "/SHREYANSH_JAIN_RESUME.pdf",
+  "resume": {
+    "url": "/Shreyansh_Jain_Resume.pdf",
+    "fileName": "Shreyansh_Jain_Resume_2026.pdf",
+    "lastUpdated": "June 2026",
+    "title": "A concise overview of my technical skills, projects, certifications, and engineering experience.",
+    "description": "Optimized for Software Engineering internships, showcasing AI-powered full-stack projects, technical expertise, certifications, and professional achievements."
+  },
   "experience": 
   [
     {

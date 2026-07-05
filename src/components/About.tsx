@@ -31,11 +31,14 @@ export function About() {
           kicker="ABOUT"
           title={
             <>
-              Operating at the seam of{" "}
-              <span className="text-gradient">code, networks &amp; intelligence.</span>
+              Building secure systems
+              <br />
+              <span className="text-gradient">
+                for the modern web.
+              </span>
             </>
           }
-          subtitle={profile.bio}
+          subtitle={profile.about}
         />
 
         <div className="grid md:grid-cols-3 gap-5">
