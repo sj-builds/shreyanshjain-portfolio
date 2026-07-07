@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "prisma generate && vite build",
+    "postinstall": "prisma generate",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."
