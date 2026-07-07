@@ -86,7 +86,7 @@ export function Resume() {
                 justify-center
                 gap-2
                 rounded-xl
-                bg-gradient-to-r
+                bg-linear-to-r
                 from-[oklch(0.85_0.18_195)]
                 to-[oklch(0.72_0.22_295)]
                 px-6

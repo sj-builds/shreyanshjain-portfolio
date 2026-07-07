@@ -49,7 +49,7 @@ export function NavBar() {
           transition-all
           duration-300
 
-          ${scrolled ? "glass-strong h-16" : "glass h-[68px]"}
+          ${scrolled ? "glass-strong h-16" : "glass h-[17]"}
           `}
         >
           {/* LOGO */}
