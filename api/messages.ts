@@ -2,7 +2,7 @@ import "dotenv/config";
 
 import jwt from "jsonwebtoken";
 
-import { prisma } from "./lib/prisma";
+import { prisma } from "./lib/prisma.js";
 
 if (!process.env.JWT_SECRET) {
   throw new Error("JWT ENV MISSING");
