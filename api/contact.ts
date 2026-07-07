@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 import { z } from "zod";
 import { waitUntil } from "@vercel/functions";
 
-import { prisma } from "../src/lib/prisma";
+import { prisma } from "./lib/prisma";
 
 if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD || !process.env.OWNER_EMAIL) {
   throw new Error("EMAIL ENV VARIABLES MISSING");
