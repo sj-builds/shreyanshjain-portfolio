@@ -282,7 +282,7 @@ transition
 rounded-xl
 border
 border-border
-bg-white/[0.02]
+bg-white/2
 p-5
 grid
 grid-cols-2
@@ -327,7 +327,7 @@ text-[oklch(0.75_0.18_150)]
 px-5
 py-2.5
 rounded-lg
-bg-gradient-to-r
+bg-linear-to-r
 from-[oklch(0.85_0.18_195)]
 to-[oklch(0.72_0.22_295)]
 text-background
@@ -377,7 +377,7 @@ p-5
 rounded-xl
 border
 border-border
-hover:bg-white/[0.03]
+hover:bg-white/3
 transition
 "
               >

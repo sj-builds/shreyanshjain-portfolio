@@ -13,8 +13,6 @@
       "@/*": ["./src/*"]
     },
 
-    "types": ["vite/client"],
-
     "noEmit": true,
 
     "strict": true,
