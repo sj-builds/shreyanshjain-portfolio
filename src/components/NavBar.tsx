@@ -10,7 +10,8 @@ const NAV = [
   { href: "#projects", label: "04 / Projects" },
   { href: "#experience", label: "05 / Experience" },
   { href: "#certs", label: "06 / Certifications" },
-  { href: "#contact", label: "07 / Contact" },
+  { href: "#resume", label: "07 / Resume" },
+  { href: "#contact", label: "08 / Contact" },
 ];
 
 export function NavBar() {
@@ -111,8 +112,8 @@ export function NavBar() {
             flex-1
             items-center
             justify-center
-            gap-8
-            xl:gap-10
+            gap-5
+            xl:gap-8
             "
           >
             {NAV.map((item) => (
