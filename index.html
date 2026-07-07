@@ -1,159 +1,242 @@
 <!doctype html>
+
 <html lang="en" dir="ltr">
   <head>
+    <!-- Core -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <!-- Prevent flash of wrong color scheme before React mounts -->
-    <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" content="#0d0d12" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
 
-    <!-- Primary SEO -->
-    <title>Shreyansh Jain — Cybersecurity Engineer & Ethical Hacker</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Theme -->
+    <meta name="color-scheme" content="dark" />
+
+    <meta name="theme-color" content="#05070a" />
+
+    <!-- SEO -->
+    <title>
+      Shreyansh Jain — Software Engineer | AI Developer | Cybersecurity
+    </title>
+
     <meta
       name="description"
-      content="Shreyansh Jain is a cybersecurity engineer and ethical hacker focused on penetration testing, security research, and secure software development. Based in New Delhi."
+      content="Portfolio of Shreyansh Jain — Software Engineer focused on AI-powered full-stack applications, cybersecurity, secure software development, and modern web engineering."
     />
+
+    <meta
+      name="keywords"
+      content="Shreyansh Jain, Software Engineer, AI Developer, Full Stack Developer, Cybersecurity, Ethical Hacking, React Developer, TypeScript Developer"
+    />
+
     <meta name="author" content="Shreyansh Jain" />
+
     <meta
       name="robots"
-      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      content="index, follow, max-snippet:-1, max-image-preview:large"
     />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <meta
+      name="referrer"
+      content="strict-origin-when-cross-origin"
+    />
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://shreyanshjain.vercel.app/" />
+
+    <link
+      rel="canonical"
+      href="https://shreyanshjain.vercel.app/"
+    />
 
     <!-- Open Graph -->
+
     <meta property="og:type" content="profile" />
-    <meta property="og:site_name" content="Shreyansh Jain" />
-    <meta property="og:title" content="Shreyansh Jain — Cybersecurity Engineer & Ethical Hacker" />
+
+    <meta
+      property="og:title"
+      content="Shreyansh Jain — Software Engineer & AI Developer"
+    />
+
     <meta
       property="og:description"
-      content="Cybersecurity engineer and ethical hacker focused on penetration testing, security research, and secure software development."
+      content="AI, cybersecurity, and full-stack engineering portfolio."
     />
-    <meta property="og:url" content="https://shreyanshjain.vercel.app/" />
-    <meta property="og:image" content="https://shreyanshjain.vercel.app/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+
     <meta
-      property="og:image:alt"
-      content="Shreyansh Jain — Cybersecurity Engineer & Ethical Hacker"
+      property="og:url"
+      content="https://shreyanshjain.vercel.app/"
     />
+
+    <meta
+      property="og:image"
+      content="https://shreyanshjain.vercel.app/og-image.png"
+    />
+
+    <meta
+      property="og:image:width"
+      content="1200"
+    />
+
+    <meta
+      property="og:image:height"
+      content="630"
+    />
+
     <meta property="og:locale" content="en_US" />
-    <meta property="profile:first_name" content="Shreyansh" />
-    <meta property="profile:last_name" content="Jain" />
-    <meta property="profile:username" content="sj-builds" />
 
-    <!-- Twitter / X Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@jshreyansh962" />
-    <meta name="twitter:creator" content="@jshreyansh962" />
-    <meta name="twitter:title" content="Shreyansh Jain — Cybersecurity Engineer & Ethical Hacker" />
+
+    <!-- Twitter -->
+
     <meta
-      name="twitter:description"
-      content="Cybersecurity engineer and ethical hacker focused on penetration testing, security research, and secure software development."
-    />
-    <meta name="twitter:image" content="https://shreyanshjain.vercel.app/og-image.png" />
-    <meta
-      name="twitter:image:alt"
-      content="Shreyansh Jain — Cybersecurity Engineer & Ethical Hacker"
+      name="twitter:card"
+      content="summary_large_image"
     />
 
-    <!-- Favicons -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta
+      name="twitter:creator"
+      content="@jshreyansh962"
+    />
 
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="/site.webmanifest" />
+    <meta
+      name="twitter:title"
+      content="Shreyansh Jain — Software Engineer & AI Developer"
+    />
 
-    <!-- iOS Web App -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Shreyansh Jain" />
+    <meta
+      name="twitter:image"
+      content="https://shreyanshjain.vercel.app/og-image.png"
+    />
+
+
+    <!-- Icons -->
+
+    <link
+      rel="icon"
+      href="/favicon.ico"
+      sizes="any"
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.svg"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png"
+      sizes="180x180"
+    />
+
+
+    <!-- PWA -->
+
+    <link
+      rel="manifest"
+      href="/site.webmanifest"
+    />
+
+    <meta
+      name="mobile-web-app-capable"
+      content="yes"
+    />
+
+    <meta
+      name="apple-mobile-web-app-capable"
+      content="yes"
+    />
+
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta
+      name="apple-mobile-web-app-title"
+      content="SHREYANSH.SYS"
+    />
+
 
     <!-- Windows -->
-    <meta name="msapplication-TileColor" content="#0d0d12" />
 
-    <!-- Performance: non-blocking Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    <meta
+      name="msapplication-TileColor"
+      content="#05070a"
     />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      media="print"
-      onload="this.media = 'all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      />
-    </noscript>
+
 
     <!-- Structured Data -->
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Person",
-            "@id": "https://shreyanshjain.vercel.app/#person",
-            "name": "Shreyansh Jain",
-            "url": "https://shreyanshjain.vercel.app/",
-            "image": "https://shreyanshjain.vercel.app/og-image.png",
-            "jobTitle": "Cybersecurity Engineer & Ethical Hacker",
-            "description": "Cybersecurity engineer and ethical hacker focused on penetration testing, security research, and secure software development.",
-            "alumniOf": {
-              "@type": "EducationalOrganization",
-              "name": "Maharaja Agrasen Institute of Management Studies",
-              "url": "https://www.maims.ac.in/"
-            },
-            "knowsAbout": [
-              "Cybersecurity",
-              "Ethical Hacking",
-              "Penetration Testing",
-              "Security Research",
-              "Secure Software Development",
-              "Web Development"
-            ],
-            "sameAs": [
-              "https://github.com/sj-builds",
-              "https://www.linkedin.com/in/shreyanshjain-tech/",
-              "https://x.com/jshreyansh962",
-              "https://leetcode.com/u/itsshreyansh/",
-              "https://www.hackerrank.com/profile/jshreyansh962",
-              "https://www.codechef.com/users/sj_builds"
-            ]
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://shreyanshjain.vercel.app/#website",
-            "url": "https://shreyanshjain.vercel.app/",
-            "name": "Shreyansh Jain — Cybersecurity Portfolio",
-            "description": "Personal portfolio of Shreyansh Jain, cybersecurity engineer and ethical hacker.",
-            "author": {
-              "@id": "https://shreyanshjain.vercel.app/#person"
-            }
-          }
+
+        "@type": "Person",
+
+        "name": "Shreyansh Jain",
+
+        "url": "https://shreyanshjain.vercel.app/",
+
+        "image": "https://shreyanshjain.vercel.app/og-image.png",
+
+        "jobTitle": "Software Engineer",
+
+        "description":
+          "Software engineer focused on AI applications, full-stack engineering, cybersecurity and secure software development.",
+
+        "knowsAbout": [
+          "Artificial Intelligence",
+          "Full Stack Development",
+          "Cybersecurity",
+          "React",
+          "TypeScript",
+          "Secure Software Engineering"
+        ],
+
+        "sameAs": [
+          "https://github.com/sj-builds",
+          "https://www.linkedin.com/in/shreyanshjain-tech/",
+          "https://x.com/jshreyansh962",
+          "https://leetcode.com/u/itsshreyansh/",
+          "https://www.hackerrank.com/profile/jshreyansh962",
+          "https://www.codechef.com/users/sj_builds"
         ]
       }
     </script>
+
   </head>
+
+
   <body>
+
     <div id="root"></div>
+
+
     <noscript>
-      <p style="font-family: sans-serif; text-align: center; padding: 2rem">
-        This portfolio requires JavaScript. Please enable it in your browser settings.
+
+      <p
+        style="
+        font-family: sans-serif;
+        text-align:center;
+        padding:2rem;
+        "
+      >
+
+        JavaScript is required to run SHREYANSH.SYS.
+
       </p>
+
     </noscript>
-    <script type="module" src="/src/main.tsx"></script>
+
+
+    <script
+      type="module"
+      src="/src/main.tsx"
+    ></script>
+
+
   </body>
 </html>
