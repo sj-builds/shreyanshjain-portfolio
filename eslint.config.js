@@ -14,10 +14,7 @@ export default tseslint.config(
   {
     files: ["**/*.{ts,tsx}"],
 
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-    ],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
 
     languageOptions: {
       ecmaVersion: "latest",
@@ -62,8 +59,8 @@ export default tseslint.config(
 
       // Best practices
       "prefer-const": "error",
-      "eqeqeq": ["error", "always"],
-      "curly": ["error", "all"],
+      eqeqeq: ["error", "always"],
+      curly: ["error", "all"],
 
       // Console usage
       "no-console": [
@@ -75,5 +72,5 @@ export default tseslint.config(
     },
   },
 
-  eslintPluginPrettier
+  eslintPluginPrettier,
 );

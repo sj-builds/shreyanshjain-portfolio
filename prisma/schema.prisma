@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Message {
+  id        String   @id @default(cuid())
+
+  name      String
+  email     String
+  subject   String?
+  message   String
+
+  createdAt DateTime @default(now())
+
+  read      Boolean @default(false)
+}
+
+model Otp {
+  id String @id @default(cuid())
+
+  email String
+  code String
+
+  expiresAt DateTime
+
+  used Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}

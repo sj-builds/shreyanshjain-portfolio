@@ -46,16 +46,16 @@ The result is a clean, production-grade frontend that prioritizes responsiveness
 
 ## Tech Stack
 
-| Category | Tools |
-| --- | --- |
-| Framework | React |
-| Language | TypeScript |
-| Build Tooling | Vite |
-| Styling | TailwindCSS |
-| Motion | Framer Motion |
-| Icons | Lucide React |
-| Forms | Formspree |
-| Deployment | Vercel |
+| Category      | Tools         |
+| ------------- | ------------- |
+| Framework     | React         |
+| Language      | TypeScript    |
+| Build Tooling | Vite          |
+| Styling       | TailwindCSS   |
+| Motion        | Framer Motion |
+| Icons         | Lucide React  |
+| Forms         | Formspree     |
+| Deployment    | Vercel        |
 
 ## Architecture
 
@@ -125,7 +125,6 @@ This project deploys as a **static Vite SPA**:
 
 This repository can run without environment variables. If you prefer configuration via env instead of hardcoding service endpoints, use:
 
-
 ## Screenshots
 
 ```md
@@ -148,10 +147,10 @@ UNLICENSED — All rights reserved.
 
 ## Contact
 
-- **GitHub**: https://github.com/sj-builds  
-- **LinkedIn**: https://www.linkedin.com/in/shreyanshjain-tech  
-- **X / Twitter**: https://x.com/jshreyansh962  
-- **Email**: jshreyansh962@gmail.com  
+- **GitHub**: https://github.com/sj-builds
+- **LinkedIn**: https://www.linkedin.com/in/shreyanshjain-tech
+- **X / Twitter**: https://x.com/jshreyansh962
+- **Email**: jshreyansh962@gmail.com
 
 ---
 

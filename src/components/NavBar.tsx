@@ -33,17 +33,12 @@ export function NavBar() {
       <div className="mx-auto max-w-7xl px-6">
         <div
           className={`flex items-center rounded-full border border-white/10 backdrop-blur-xl transition-all duration-300 ${
-            scrolled
-              ? "glass-strong h-16"
-              : "glass h-[68px]"
+            scrolled ? "glass-strong h-16" : "glass h-[68px]"
           }`}
         >
           {/* Logo */}
 
-          <Link
-            to="/"
-            className="flex items-center gap-3 pl-7 pr-10 shrink-0"
-          >
+          <Link to="/" className="flex items-center gap-3 pl-7 pr-10 shrink-0">
             <span className="relative flex h-3 w-3">
               <span className="absolute inset-0 rounded-full bg-cyan-400 animate-ping opacity-50" />
               <span className="relative rounded-full bg-cyan-400 h-3 w-3" />

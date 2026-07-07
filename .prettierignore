@@ -1,8 +1,35 @@
+# Dependencies
 node_modules
+
+
+# Build outputs
 dist
+dist-ssr
 .output
 .vinxi
-pnpm-lock.yaml
-package-lock.json
-bun.lock
+.vercel
+
+
+# Environment
+.env
+.env.local
+.env.*
+
+
+# Generated files
+src/generated/prisma
 routeTree.gen.ts
+
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+bun.lock
+
+
+# Logs
+*.log
+
+
+# Coverage
+coverage

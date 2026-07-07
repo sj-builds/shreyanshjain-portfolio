@@ -33,9 +33,7 @@ export function About() {
             <>
               Building secure systems
               <br />
-              <span className="text-gradient">
-                for the modern web.
-              </span>
+              <span className="text-gradient">for the modern web.</span>
             </>
           }
           subtitle={profile.about}

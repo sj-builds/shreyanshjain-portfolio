@@ -5,8 +5,7 @@ import { SectionHeader } from "./SectionHeader";
 import profile from "@/data/profile.json";
 
 const glowStyle = {
-  background:
-    "radial-gradient(circle, oklch(0.72 0.22 295 / 0.45), transparent 60%)",
+  background: "radial-gradient(circle, oklch(0.72 0.22 295 / 0.45), transparent 60%)",
 } as const;
 
 export function Resume() {
@@ -14,15 +13,10 @@ export function Resume() {
 
   if (!resume?.url) return null;
 
-  const isExternal =
-    resume.url.startsWith("http://") || resume.url.startsWith("https://");
+  const isExternal = resume.url.startsWith("http://") || resume.url.startsWith("https://");
 
   return (
-    <section
-      id="resume"
-      aria-labelledby="resume-heading"
-      className="relative py-28"
-    >
+    <section id="resume" aria-labelledby="resume-heading" className="relative py-28">
       <div className="relative mx-auto max-w-7xl px-6">
         <SectionHeader
           index="07"
@@ -54,20 +48,13 @@ export function Resume() {
           {/* Content */}
           <div className="relative z-10">
             <div className="flex items-center gap-3 font-mono text-xs tracking-[0.2em] text-[oklch(0.85_0.18_195)] uppercase">
-              <FileText
-                className="h-4 w-4"
-                aria-hidden="true"
-              />
+              <FileText className="h-4 w-4" aria-hidden="true" />
               <span>{resume.fileName}</span>
             </div>
 
-            <h3 className="mt-4 font-display text-3xl leading-tight md:text-4xl">
-              {resume.title}
-            </h3>
+            <h3 className="mt-4 font-display text-3xl leading-tight md:text-4xl">{resume.title}</h3>
 
-            <p className="mt-4 max-w-2xl text-muted-foreground">
-              {resume.description}
-            </p>
+            <p className="mt-4 max-w-2xl text-muted-foreground">{resume.description}</p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
@@ -122,10 +109,7 @@ export function Resume() {
                 focus-visible:ring-offset-background
               "
             >
-              <Download
-                className="h-4 w-4"
-                aria-hidden="true"
-              />
+              <Download className="h-4 w-4" aria-hidden="true" />
               DOWNLOAD PDF
             </a>
           </div>

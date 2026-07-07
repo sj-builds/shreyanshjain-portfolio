@@ -4,11 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-    tsConfigPaths(),
-  ],
+  plugins: [react(), tailwindcss(), tsConfigPaths()],
 
   server: {
     port: 5173,
@@ -46,11 +42,6 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    include: [
-      "react",
-      "react-dom",
-      "react-router-dom",
-      "framer-motion",
-    ],
+    include: ["react", "react-dom", "react-router-dom", "framer-motion"],
   },
 });
