@@ -1,0 +1,43 @@
+# Dependabot configuration for SHREYANSH.SYS
+# Checks dependencies and creates update PRs automatically
+
+version: 2
+
+updates:
+  # npm dependencies (React, Vite, Prisma, etc.)
+  - package-ecosystem: "npm"
+    directory: "/"
+
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Kolkata"
+
+    open-pull-requests-limit: 5
+
+    groups:
+      frontend:
+        patterns:
+          - "react*"
+          - "@vitejs/*"
+          - "vite"
+          - "tailwindcss"
+
+      prisma:
+        patterns:
+          - "prisma"
+          - "@prisma/*"
+
+      security:
+        patterns:
+          - "jsonwebtoken"
+          - "nodemailer"
+          - "@vercel/*"
+
+    labels:
+      - "dependencies"
+
+    commit-message:
+      prefix: "chore"
+      include: "scope"
