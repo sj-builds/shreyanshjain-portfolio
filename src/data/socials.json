@@ -7,13 +7,6 @@
     "accent": "cyan"
   },
   {
-    "label": "Phone",
-    "icon": "Phone",
-    "url": "tel:+918076420936",
-    "handle": "+91 8076420936",
-    "accent": "violet"
-  },
-  {
     "label": "Location",
     "icon": "MapPin",
     "url": "https://maps.google.com/?q=Uttam+Nagar+West+New+Delhi",

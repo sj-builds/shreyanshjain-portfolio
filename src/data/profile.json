@@ -1,13 +1,12 @@
 {
   "name": "Shreyansh Jain",
   "handle": "shreyansh.sys",
-  "roles": ["Cybersecurity Enthusiast", "BCA Student", "Future Ethical Hacker"],
-  "typing": ["Python", "SQL", "Cybersecurity", "Networking", "AI Tools"],
-  "bio": "Cybersecurity student focused on ethical hacking, secure software development, and offensive security. Continuously building projects, solving real-world challenges, and strengthening practical security skills.",
+  "roles": ["BCA Student", "Full Stack Developer", "Cybersecurity Enthusiast"],
+  "typing": ["React", "TypeScript", "Python", "Cybersecurity", "AI Applications"],
+  "bio": "Computer applications student building full-stack software, AI-powered applications, and secure systems. Focused on practical engineering, cybersecurity fundamentals, and solving real-world problems through technology.",
   "about": "My interest in cybersecurity comes from understanding how software, networks, and operating systems work—and how they can fail. I enjoy learning offensive security techniques, building secure applications, and solving practical security challenges. Currently pursuing a Bachelor of Computer Applications, I am continuously improving my skills through hands-on projects, ethical hacking training, and real-world experimentation. My goal is to become a security engineer who builds software that is secure by design.",
   "location": "New Delhi, India",
   "email": "jshreyansh962@gmail.com",
-  "phone": "+91 8076420936",
   "resume": {
     "url": "/Shreyansh_Jain_Resume.pdf",
     "fileName": "Shreyansh_Jain_Resume.pdf",
