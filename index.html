@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en" dir="ltr">
   <head>
     <!-- Core -->
@@ -14,29 +13,23 @@
 
     <!-- Theme -->
     <meta name="color-scheme" content="dark" />
-
     <meta name="theme-color" content="#05070a" />
 
-    <!-- SEO -->
+    <!-- Primary SEO -->
     <title>
       Shreyansh Jain — Software Engineer | AI Developer | Cybersecurity
     </title>
 
     <meta
       name="description"
-      content="Portfolio of Shreyansh Jain — Software Engineer focused on AI-powered full-stack applications, cybersecurity, secure software development, and modern web engineering."
-    />
-
-    <meta
-      name="keywords"
-      content="Shreyansh Jain, Software Engineer, AI Developer, Full Stack Developer, Cybersecurity, Ethical Hacking, React Developer, TypeScript Developer"
+      content="Portfolio of Shreyansh Jain — Software Engineer building AI-powered full-stack applications with a focus on cybersecurity, secure software development, and modern web engineering."
     />
 
     <meta name="author" content="Shreyansh Jain" />
 
     <meta
       name="robots"
-      content="index, follow, max-snippet:-1, max-image-preview:large"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     />
 
     <meta
@@ -45,15 +38,18 @@
     />
 
     <!-- Canonical -->
-
     <link
       rel="canonical"
       href="https://shreyanshjain.vercel.app/"
     />
 
     <!-- Open Graph -->
-
     <meta property="og:type" content="profile" />
+
+    <meta
+      property="og:site_name"
+      content="SHREYANSH.SYS"
+    />
 
     <meta
       property="og:title"
@@ -62,7 +58,7 @@
 
     <meta
       property="og:description"
-      content="AI, cybersecurity, and full-stack engineering portfolio."
+      content="AI-powered full-stack development, cybersecurity, and secure software engineering portfolio."
     />
 
     <meta
@@ -76,6 +72,11 @@
     />
 
     <meta
+      property="og:image:secure_url"
+      content="https://shreyanshjain.vercel.app/og-image.png"
+    />
+
+    <meta
       property="og:image:width"
       content="1200"
     />
@@ -85,11 +86,19 @@
       content="630"
     />
 
+    <meta
+      property="og:image:alt"
+      content="Shreyansh Jain Portfolio Preview"
+    />
+
     <meta property="og:locale" content="en_US" />
 
+    <meta property="profile:first_name" content="Shreyansh" />
+    <meta property="profile:last_name" content="Jain" />
+    <meta property="profile:username" content="sj-builds" />
 
-    <!-- Twitter -->
 
+    <!-- Twitter / X -->
     <meta
       name="twitter:card"
       content="summary_large_image"
@@ -106,13 +115,22 @@
     />
 
     <meta
+      name="twitter:description"
+      content="Building AI-powered full-stack software with cybersecurity-focused engineering."
+    />
+
+    <meta
       name="twitter:image"
       content="https://shreyanshjain.vercel.app/og-image.png"
     />
 
+    <meta
+      name="twitter:image:alt"
+      content="Shreyansh Jain Portfolio"
+    />
+
 
     <!-- Icons -->
-
     <link
       rel="icon"
       href="/favicon.ico"
@@ -133,7 +151,6 @@
 
 
     <!-- PWA -->
-
     <link
       rel="manifest"
       href="/site.webmanifest"
@@ -141,11 +158,6 @@
 
     <meta
       name="mobile-web-app-capable"
-      content="yes"
-    />
-
-    <meta
-      name="apple-mobile-web-app-capable"
       content="yes"
     />
 
@@ -161,7 +173,6 @@
 
 
     <!-- Windows -->
-
     <meta
       name="msapplication-TileColor"
       content="#05070a"
@@ -169,66 +180,89 @@
 
 
     <!-- Structured Data -->
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
 
-        "@type": "Person",
+        "@graph": [
+          {
+            "@type": "Person",
 
-        "name": "Shreyansh Jain",
+            "@id": "https://shreyanshjain.vercel.app/#person",
 
-        "url": "https://shreyanshjain.vercel.app/",
+            "name": "Shreyansh Jain",
 
-        "image": "https://shreyanshjain.vercel.app/og-image.png",
+            "url": "https://shreyanshjain.vercel.app/",
 
-        "jobTitle": "Software Engineer",
+            "image": "https://shreyanshjain.vercel.app/og-image.png",
 
-        "description":
-          "Software engineer focused on AI applications, full-stack engineering, cybersecurity and secure software development.",
+            "jobTitle": "Software Engineer",
 
-        "knowsAbout": [
-          "Artificial Intelligence",
-          "Full Stack Development",
-          "Cybersecurity",
-          "React",
-          "TypeScript",
-          "Secure Software Engineering"
-        ],
+            "description":
+              "Software engineer focused on AI applications, full-stack development, cybersecurity, and secure software engineering.",
 
-        "sameAs": [
-          "https://github.com/sj-builds",
-          "https://www.linkedin.com/in/shreyanshjain-tech/",
-          "https://x.com/jshreyansh962",
-          "https://leetcode.com/u/itsshreyansh/",
-          "https://www.hackerrank.com/profile/jshreyansh962",
-          "https://www.codechef.com/users/sj_builds"
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Maharaja Agrasen Institute of Management Studies"
+            },
+
+            "knowsAbout": [
+              "Artificial Intelligence",
+              "Full Stack Development",
+              "Cybersecurity",
+              "Ethical Hacking",
+              "React",
+              "TypeScript",
+              "Secure Software Development"
+            ],
+
+            "sameAs": [
+              "https://github.com/sj-builds",
+              "https://www.linkedin.com/in/shreyanshjain-tech/",
+              "https://x.com/jshreyansh962",
+              "https://leetcode.com/u/itsshreyansh/",
+              "https://www.hackerrank.com/profile/jshreyansh962",
+              "https://www.codechef.com/users/sj_builds"
+            ]
+          },
+
+
+          {
+            "@type": "WebSite",
+
+            "@id": "https://shreyanshjain.vercel.app/#website",
+
+            "url": "https://shreyanshjain.vercel.app/",
+
+            "name": "SHREYANSH.SYS",
+
+            "description":
+              "Software engineering, AI development, and cybersecurity portfolio.",
+
+            "author": {
+              "@id": "https://shreyanshjain.vercel.app/#person"
+            }
+          }
         ]
       }
     </script>
-
   </head>
 
 
   <body>
-
     <div id="root"></div>
 
 
     <noscript>
-
       <p
         style="
-        font-family: sans-serif;
-        text-align:center;
-        padding:2rem;
+          font-family: sans-serif;
+          text-align:center;
+          padding:2rem;
         "
       >
-
         JavaScript is required to run SHREYANSH.SYS.
-
       </p>
-
     </noscript>
 
 
@@ -236,7 +270,6 @@
       type="module"
       src="/src/main.tsx"
     ></script>
-
 
   </body>
 </html>
