@@ -14,9 +14,9 @@ I appreciate responsible security research and reports that help improve this pr
 
 This repository follows continuous deployment.
 
-| Branch | Status |
-| ------ | ------ |
-| main | ✅ Supported |
+| Branch              | Status                     |
+| ------------------- | -------------------------- |
+| main                | ✅ Supported               |
 | older commits/forks | ❌ Not actively maintained |
 
 Only the latest production version receives security fixes.

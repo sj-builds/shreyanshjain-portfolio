@@ -163,7 +163,6 @@ export function NavBar() {
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
 
-
           {/* MOBILE MENU */}
 
           <AnimatePresence>
