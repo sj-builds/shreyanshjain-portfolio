@@ -1,13 +1,15 @@
 <div align="center">
 
-# Shreyansh Jain — Futuristic Cybersecurity Portfolio
+# Shreyansh Jain — AI Engineering & Cybersecurity Portfolio
 
-A production-grade, cinematic portfolio experience with a terminal-inspired interface, glassmorphism surfaces, and restrained neon accents.
+A production-grade developer portfolio engineered as a secure full-stack system with cinematic UI, encrypted contact workflow, admin console, and modern cloud architecture.
 
 [![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-19.x-149ECA?logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-7.x-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
 <br />
 
@@ -23,139 +25,375 @@ A production-grade, cinematic portfolio experience with a terminal-inspired inte
 
 </div>
 
+
 ## Live Website
 
-https://shreyanshjain.vercel.app/
+```text
+https://shreyanshjain.vercel.app
+```
 
-## Overview
+---
 
-This repository contains **Shreyansh Jain’s** futuristic cybersecurity portfolio—built as a **Vite + React SPA** with an engineering-first approach to UI. The design direction is cinematic and minimal: dark premium surfaces, glass panels, neon purple/electric blue accents, and motion that supports the narrative without overwhelming the content.
+# Overview
 
-The result is a clean, production-grade frontend that prioritizes responsiveness, performance, and a distinctive visual identity—while keeping the experience readable and fast.
+**SHREYANSH.SYS** is a futuristic software engineering portfolio built beyond a traditional static website.
 
-## Features
+It combines a cinematic cybersecurity-inspired interface with real production backend systems including:
 
-- **Immersive animations**: Framer Motion transitions and section reveals tuned for a cinematic flow
-- **Glassmorphism UI**: layered panels, subtle borders, glow shadows, and depth
-- **Responsive architecture**: mobile-safe spacing and layouts without compromising desktop presentation
-- **Cinematic interactions**: terminal-inspired UI patterns and tactile micro-interactions
-- **Formspree integration**: production email submissions with validation + loading/success/error states
-- **Downloadable resume**: direct PDF download with a stable filename
-- **SEO optimization**: metadata configured for social previews and search indexing
-- **Vercel deployment**: static hosting with SPA rewrites and `dist/` output
+- custom secure contact gateway
+- email ownership verification
+- protected admin dashboard
+- database persistence
+- audit logging
+- authentication security
 
-## Tech Stack
+The project focuses on:
 
-| Category      | Tools         |
-| ------------- | ------------- |
-| Framework     | React         |
-| Language      | TypeScript    |
-| Build Tooling | Vite          |
-| Styling       | TailwindCSS   |
-| Motion        | Framer Motion |
-| Icons         | Lucide React  |
-| Forms         | Formspree     |
-| Deployment    | Vercel        |
+- clean architecture
+- security-first engineering
+- performance
+- maintainability
+- premium developer experience
 
-## Architecture
 
-- **Standard SPA**: compiled to static assets in `dist/` using Vite
-- **Client-side routing**: React Router handles navigation and SPA fallbacks
-- **Component-first UI**: sections composed from focused components for reuse and maintainability
-- **Data-driven content**: editable JSON files under `src/data/` for profile and links
-- **Production-ready ergonomics**: minimal runtime complexity (no SSR, no server adapters)
+---
 
-## Folder Structure
+# Core Features
+
+
+## Interface
+
+- Cinematic cyber-inspired experience
+- Glassmorphism surfaces
+- Terminal-style interactions
+- Responsive layouts
+- Smooth Framer Motion animations
+- Custom cursor system
+- Optimized SPA navigation
+
+
+## Secure Contact Gateway
+
+Custom-built replacement for third-party forms.
+
+Features:
+
+- Visitor message storage
+- Email verification before delivery
+- Secure verification tokens
+- SHA-256 token hashing
+- Expiring verification links
+- Gmail SMTP delivery
+- Visitor confirmation emails
+- Owner notification emails
+
+
+## Admin Console
+
+Private dashboard system:
+
+- Password authentication
+- TOTP multi-factor authentication
+- JWT protected sessions
+- Secure API authorization
+- Message management
+- Read/archive workflow
+
+
+## Security Engineering
+
+Implemented:
+
+- Input validation with Zod
+- Environment isolation
+- HTML escaping
+- Token hashing
+- Audit logs
+- Rate limit database model
+- Secure HTTP headers
+- Protected API routes
+
+
+---
+
+# Tech Stack
+
+
+| Layer | Technology |
+|-|-|
+| Frontend | React |
+| Language | TypeScript |
+| Build | Vite |
+| Styling | TailwindCSS |
+| Animation | Framer Motion |
+| Routing | React Router |
+| Validation | Zod |
+| Backend | Vercel Serverless Functions |
+| ORM | Prisma |
+| Database | PostgreSQL (Neon) |
+| Email | Nodemailer + Gmail SMTP |
+| Authentication | JWT + TOTP |
+| Deployment | Vercel |
+
+
+---
+
+# Architecture
+
+
+```text
+Visitor
+   |
+   |
+React Frontend
+   |
+   |
+Vercel Serverless API
+   |
+   +------------+
+   |            |
+ Prisma      SMTP
+   |            |
+ Neon DB     Gmail
+```
+
+
+Main flows:
+
+
+```text
+Contact Submit
+
+User
+ ↓
+/api/contact
+ ↓
+Validate Input
+ ↓
+Store Message
+ ↓
+Generate Token
+ ↓
+Send Verification Email
+
+
+Verification
+
+Email Link
+ ↓
+/api/verify-contact
+ ↓
+Hash Token Check
+ ↓
+Mark Verified
+ ↓
+Notify Owner
+ ↓
+Confirm Visitor
+```
+
+
+---
+
+# Folder Structure
+
 
 ```text
 .
-├─ public/
-│  ├─ favicon.svg
-│  ├─ site.webmanifest
-│  └─ resume.pdf
-├─ src/
-│  ├─ components/
-│  ├─ data/
-│  ├─ App.tsx
-│  ├─ main.tsx
-│  └─ styles.css
-├─ index.html
-├─ package.json
-├─ tsconfig.json
-├─ vite.config.ts
-└─ vercel.json
+├── api/
+│   ├── contact.ts
+│   ├── verify-contact.ts
+│   ├── admin-login.ts
+│   ├── messages.ts
+│   ├── message-action.ts
+│   │
+│   └── lib/
+│       └── prisma.ts
+│
+├── prisma/
+│   ├── schema.prisma
+│   └── migrations/
+│
+├── public/
+│
+├── src/
+│   ├── components/
+│   ├── data/
+│   ├── lib/
+│   │   ├── mail.ts
+│   │   ├── security.ts
+│   │   ├── token.ts
+│   │   └── validation.ts
+│   │
+│   ├── pages/
+│   │   ├── Admin.tsx
+│   │   └── VerifyContact.tsx
+│   │
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── styles.css
+│
+├── vercel.json
+├── vite.config.ts
+└── package.json
 ```
 
-## Installation
 
-### Prerequisites
+---
 
-- Node.js (LTS recommended)
-- npm
+# Local Setup
 
-### Setup
+
+Clone:
+
+```bash
+git clone https://github.com/sj-builds/YOUR_REPO.git
+```
+
+
+Install:
 
 ```bash
 npm install
 ```
 
-## Development Commands
+
+Setup database:
+
+```bash
+npx prisma generate
+
+npx prisma migrate dev
+```
+
+
+Start development:
 
 ```bash
 npm run dev
 ```
 
+
+---
+
+# Environment Variables
+
+
+Create `.env`:
+
+
+```env
+DATABASE_URL=
+
+SMTP_HOST=
+SMTP_PORT=
+SMTP_EMAIL=
+SMTP_PASSWORD=
+
+OWNER_EMAIL=
+
+SITE_URL=
+
+JWT_SECRET=
+
+ADMIN_PASSWORD_HASH=
+ADMIN_TOTP_SECRET=
+```
+
+
+---
+
+# Build
+
+
 ```bash
 npm run build
 ```
+
+
+Preview:
+
 
 ```bash
 npm run preview
 ```
 
-## Deployment (Vercel)
 
-This project deploys as a **static Vite SPA**:
+---
 
-- **Build command**: `npm run build`
-- **Output directory**: `dist`
-- **SPA rewrites**: configured in `vercel.json` to route all paths to `index.html`
+# Deployment
 
-## Environment Variables
 
-This repository can run without environment variables. If you prefer configuration via env instead of hardcoding service endpoints, use:
+Production deployment:
 
-## Screenshots
+- Platform: Vercel
+- Database: Neon PostgreSQL
+- Runtime: Serverless Functions
 
-```md
-![Preview](./preview.png)
-![Hero](./docs/screens/hero.png)
-![Projects](./docs/screens/projects.png)
-![Contact](./docs/screens/contact.png)
+
+Vercel settings:
+
+
+```text
+Build Command:
+npm run build
+
+Output:
+dist
 ```
 
-## Credits
 
-- **Framer Motion** — motion primitives and animation system
-- **Vite** — build tooling and dev server
-- **TailwindCSS** — styling framework
-- **Lucide React** — icon library
+---
 
-## License
+# Status
+
+
+```text
+Frontend UI                  COMPLETE
+Secure Contact Gateway       COMPLETE
+Email Verification System    COMPLETE
+Admin Console                COMPLETE
+Database Integration         COMPLETE
+Production Deployment        COMPLETE
+```
+
+
+---
+
+# License
+
 
 UNLICENSED — All rights reserved.
 
-## Contact
+This project is publicly available only for portfolio demonstration and evaluation.
 
-- **GitHub**: https://github.com/sj-builds
-- **LinkedIn**: https://www.linkedin.com/in/shreyanshjain-tech
-- **X / Twitter**: https://x.com/jshreyansh962
-- **Email**: jshreyansh962@gmail.com
+Copying, redistributing, modifying, or using any source code, assets, design systems, or implementation details without written permission is prohibited.
+
+
+---
+
+# Contact
+
+
+**Shreyansh Jain**
+
+GitHub:
+https://github.com/sj-builds
+
+LinkedIn:
+https://www.linkedin.com/in/shreyanshjain-tech
+
+X:
+https://x.com/jshreyansh962
+
+Email:
+jshreyansh962@gmail.com
+
 
 ---
 
 <div align="center">
 
-**Built to feel cinematic. Engineered to ship.**
+**Designed with precision. Built with security. Engineered to ship.**
 
 </div>
