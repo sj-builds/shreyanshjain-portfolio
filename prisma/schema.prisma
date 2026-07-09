@@ -6,23 +6,101 @@ datasource db {
   provider = "postgresql"
 }
 
-model Message {
-  id        String   @id @default(cuid())
+/**
+ * |--------------------------------------------------------------------------
+ * | Secure Contact Gateway Messages
+ * |--------------------------------------------------------------------------
+ */
 
-  name      String
-  email     String
-  subject   String?
-  message   String
+model Message {
+  id String @id @default(cuid())
+
+  /**
+   * |--------------------------------------------------------------------------
+   * | Visitor Identity
+   * |--------------------------------------------------------------------------
+   */
+
+  name String
+
+  email String
+
+  subject String?
+
+  message String
+
+  /**
+   * |--------------------------------------------------------------------------
+   * | Email Ownership Verification
+   * |--------------------------------------------------------------------------
+   */
+
+  verified Boolean @default(false)
+
+  // Never store raw tokens
+  // Store SHA-256 hash only
+
+  verificationTokenHash String?
+
+  verificationExpires DateTime?
+
+  verifiedAt DateTime?
+
+  /**
+   * |--------------------------------------------------------------------------
+   * | Admin Inbox State
+   * |--------------------------------------------------------------------------
+   */
+
+  read Boolean @default(false)
+
+  archived Boolean @default(false)
+
+  /**
+   * |--------------------------------------------------------------------------
+   * | Security Metadata
+   * |--------------------------------------------------------------------------
+   */
+
+  ipAddress String?
+
+  userAgent String?
+
+  /**
+   * |--------------------------------------------------------------------------
+   * | Timestamps
+   * |--------------------------------------------------------------------------
+   */
 
   createdAt DateTime @default(now())
 
-  read      Boolean @default(false)
+  updatedAt DateTime @default(now()) @updatedAt
+
+  /**
+   * |--------------------------------------------------------------------------
+   * | Indexes
+   * |--------------------------------------------------------------------------
+   */
+
+  @@index([email])
+  @@index([verified])
+  @@index([createdAt])
+  @@index([verificationTokenHash])
 }
+
+/**
+ * |--------------------------------------------------------------------------
+ * | OTP Verification System
+ * |--------------------------------------------------------------------------
+ */
 
 model Otp {
   id String @id @default(cuid())
 
   email String
+
+  // Store hashed OTP only
+
   code String
 
   expiresAt DateTime
@@ -32,4 +110,69 @@ model Otp {
   createdAt DateTime @default(now())
 
   @@index([email])
+  @@index([expiresAt])
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | Security Audit Logging
+ * |--------------------------------------------------------------------------
+ */
+
+model SecurityLog {
+  id String @id @default(cuid())
+
+  /**
+   * Examples:
+   * CONTACT_CREATED
+   * EMAIL_VERIFIED
+   * INVALID_TOKEN
+   * RATE_LIMIT_BLOCKED
+   * BOT_BLOCKED
+   * ADMIN_ACTION
+   */
+
+  event String
+
+  email String?
+
+  ipAddress String?
+
+  metadata Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([event])
+  @@index([createdAt])
+  @@index([email])
+}
+
+/**
+ * |--------------------------------------------------------------------------
+ * | Abuse Prevention / Rate Limiting
+ * |--------------------------------------------------------------------------
+ */
+
+model RateLimit {
+  id String @id @default(cuid())
+
+  /**
+   * Usually:
+   * IP address
+   * email
+   * session identifier
+   */
+
+  identifier String @unique
+
+  attempts Int @default(1)
+
+  expiresAt DateTime
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @default(now()) @updatedAt
+
+  @@index([identifier])
+  @@index([expiresAt])
 }

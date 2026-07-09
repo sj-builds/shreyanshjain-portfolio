@@ -4,8 +4,12 @@
 
   "rewrites": [
     {
-      "source": "/admin",
-      "destination": "/index.html"
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
   ],
 
@@ -19,7 +23,6 @@
         }
       ]
     },
-
     {
       "source": "/robots.txt",
       "headers": [
@@ -29,7 +32,6 @@
         }
       ]
     },
-
     {
       "source": "/assets/(.*)",
       "headers": [
@@ -39,7 +41,6 @@
         }
       ]
     },
-
     {
       "source": "/(.*)",
       "headers": [

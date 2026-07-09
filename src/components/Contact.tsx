@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { motion } from "framer-motion";
+
 import { SectionHeader } from "./SectionHeader";
 
 import socials from "@/data/socials.json";
@@ -12,12 +13,16 @@ export function Contact() {
 
   const [msg, setMsg] = useState("");
 
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "verify" | "error">("idle");
 
   const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (status === "loading") {
+      return;
+    }
 
     setError(null);
 
@@ -71,7 +76,7 @@ export function Contact() {
       const data = await res.json();
 
       if (!data.success) {
-        throw new Error(data.error);
+        throw new Error(data.error ?? "Transmission rejected.");
       }
 
       setName("");
@@ -80,17 +85,30 @@ export function Contact() {
 
       setMsg("");
 
-      setStatus("success");
+      setStatus("verify");
     } catch (err) {
       setStatus("error");
 
-      setError(err instanceof Error ? err.message : "Transmission failed.");
+      const message = err instanceof Error ? err.message : "Transmission failed.";
+
+      const friendlyErrors: Record<string, string> = {
+        INVALID_INPUT: "Transmission format rejected.",
+
+        RATE_LIMITED: "Too many attempts. Try again later.",
+
+        BOT_DETECTED: "Security system rejected this request.",
+
+        TRANSMISSION_FAILED: "Secure channel temporarily unavailable.",
+      };
+
+      setError(friendlyErrors[message] ?? message);
     }
   }
 
   return (
     <section
       id="contact"
+
       className="
 relative
 py-28
@@ -126,8 +144,7 @@ px-6
           }
 
           subtitle="
-Drop a transmission directly.
-Encrypted storage with private response channel.
+Verified email delivery with secure private response channel.
 "
         />
 
@@ -207,7 +224,7 @@ ml-3
 text-muted-foreground
 "
               >
-                ~/contact — online
+                ~/contact — secured
               </span>
             </div>
 
@@ -289,13 +306,13 @@ grid-cols-2
 gap-4
 "
               >
-                <SystemItem name="DATABASE_SYNC" value="ONLINE" />
+                <SystemItem name="EMAIL_VERIFY" value="ACTIVE" />
 
-                <SystemItem name="MAIL_RELAY" value="ACTIVE" />
+                <SystemItem name="SECURE_STORE" value="ONLINE" />
+
+                <SystemItem name="SPAM_FILTER" value="ARMED" />
 
                 <SystemItem name="RESPONSE" value="<24H" />
-
-                <SystemItem name="CHANNEL" value="READY" />
               </div>
 
               {status === "error" && (
@@ -309,14 +326,14 @@ text-red-400
                 </p>
               )}
 
-              {status === "success" && (
+              {status === "verify" && (
                 <p
                   className="
 text-xs
 text-[oklch(0.75_0.18_150)]
 "
                 >
-                  Secure transmission received.
+                  Verification link sent. Check your email to complete secure transmission.
                 </p>
               )}
 
@@ -337,7 +354,7 @@ glow-cyan
 disabled:opacity-50
 "
               >
-                {status === "loading" ? "TRANSMITTING..." : "TRANSMIT →"}
+                {status === "loading" ? "VERIFYING CHANNEL..." : "OPEN CHANNEL →"}
               </button>
             </div>
           </motion.form>
@@ -407,7 +424,15 @@ text-muted-foreground
   );
 }
 
-function SystemItem({ name, value }: { name: string; value: string }) {
+function SystemItem({
+  name,
+
+  value,
+}: {
+  name: string;
+
+  value: string;
+}) {
   return (
     <div>
       <div
@@ -432,15 +457,23 @@ text-[oklch(0.85_0.18_195)]
 
 function Field({
   label,
+
   value,
+
   setValue,
+
   placeholder,
+
   type = "text",
 }: {
   label: string;
+
   value: string;
+
   setValue: (v: string) => void;
+
   placeholder: string;
+
   type?: string;
 }) {
   return (

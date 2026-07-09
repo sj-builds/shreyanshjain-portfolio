@@ -30,7 +30,7 @@ export function App() {
         <Contact />
       </main>
       <Footer />
-      <div className="pointer-events-none fixed bottom-0 inset-x-0 h-40 bg-gradient-to-t from-background via-background/60 to-transparent" />
+      <div className="pointer-events-none fixed bottom-0 inset-x-0 h-40 bg-linear-to-t from-background via-background/60 to-transparent" />
     </div>
   );
 }

@@ -1,14 +1,30 @@
 import "dotenv/config";
 
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+
 import jwt from "jsonwebtoken";
 
 import { prisma } from "./lib/prisma.js";
+
+import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security";
+
+/*
+|--------------------------------------------------------------------------
+| Environment Check
+|--------------------------------------------------------------------------
+*/
 
 if (!process.env.JWT_SECRET) {
   throw new Error("JWT ENV MISSING");
 }
 
-function verifyAdmin(req: any) {
+/*
+|--------------------------------------------------------------------------
+| Admin Verification
+|--------------------------------------------------------------------------
+*/
+
+function verifyAdmin(req: VercelRequest) {
   const header = req.headers.authorization;
 
   if (!header || !header.startsWith("Bearer ")) {
@@ -25,6 +41,8 @@ function verifyAdmin(req: any) {
 
       {
         issuer: "portfolio-admin",
+
+        audience: "admin-console",
       },
     );
   } catch {
@@ -32,7 +50,17 @@ function verifyAdmin(req: any) {
   }
 }
 
-export default async function handler(req: any, res: any) {
+/*
+|--------------------------------------------------------------------------
+| Messages API
+|--------------------------------------------------------------------------
+*/
+
+export default async function handler(
+  req: VercelRequest,
+
+  res: VercelResponse,
+) {
   res.setHeader(
     "Cache-Control",
 
@@ -50,6 +78,16 @@ export default async function handler(req: any, res: any) {
   const admin = verifyAdmin(req);
 
   if (!admin) {
+    await logSecurityEvent({
+      event: SECURITY_EVENTS.ADMIN_ACTION,
+
+      metadata: {
+        action: "FAILED_MESSAGES_ACCESS",
+
+        endpoint: "/api/messages",
+      },
+    });
+
     return res.status(401).json({
       success: false,
 
@@ -59,23 +97,48 @@ export default async function handler(req: any, res: any) {
 
   try {
     /*
-      Parallel execution
-
-      faster than:
-      query
-       ↓
-      count
-       ↓
-      unread
+    |--------------------------------------------------------------------------
+    | Pagination
+    |--------------------------------------------------------------------------
     */
+
+    const page = Math.max(
+      Number(req.query.page ?? 1),
+
+      1,
+    );
+
+    const limit = Math.min(
+      Number(req.query.limit ?? 50),
+
+      100,
+    );
+
+    const skip = (page - 1) * limit;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Query Filter
+    |--------------------------------------------------------------------------
+    */
+
+    const filter = {
+      verified: true,
+
+      archived: false,
+    };
 
     const [messages, total, unread] = await Promise.all([
       prisma.message.findMany({
+        where: filter,
+
         orderBy: {
           createdAt: "desc",
         },
 
-        take: 100,
+        skip,
+
+        take: limit,
 
         select: {
           id: true,
@@ -90,14 +153,20 @@ export default async function handler(req: any, res: any) {
 
           createdAt: true,
 
+          verifiedAt: true,
+
           read: true,
         },
       }),
 
-      prisma.message.count(),
+      prisma.message.count({
+        where: filter,
+      }),
 
       prisma.message.count({
         where: {
+          ...filter,
+
           read: false,
         },
       }),
@@ -105,6 +174,14 @@ export default async function handler(req: any, res: any) {
 
     return res.status(200).json({
       success: true,
+
+      pagination: {
+        page,
+
+        limit,
+
+        pages: Math.ceil(total / limit),
+      },
 
       stats: {
         total,

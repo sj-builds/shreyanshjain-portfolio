@@ -1,14 +1,36 @@
 import "dotenv/config";
 
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+
 import jwt from "jsonwebtoken";
 
+import { z } from "zod";
+
 import { prisma } from "./lib/prisma.js";
+
+import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security";
 
 if (!process.env.JWT_SECRET) {
   throw new Error("JWT ENV MISSING");
 }
 
-function verifyAdmin(req: any) {
+/*
+|--------------------------------------------------------------------------
+| Helpers
+|--------------------------------------------------------------------------
+*/
+
+function getClientIp(req: VercelRequest) {
+  const forwarded = req.headers["x-forwarded-for"];
+
+  if (typeof forwarded === "string") {
+    return forwarded.split(",")[0].trim();
+  }
+
+  return req.socket.remoteAddress ?? "unknown";
+}
+
+function verifyAdmin(req: VercelRequest) {
   const header = req.headers.authorization;
 
   if (!header || !header.startsWith("Bearer ")) {
@@ -25,6 +47,8 @@ function verifyAdmin(req: any) {
 
       {
         issuer: "portfolio-admin",
+
+        audience: "admin-console",
       },
     );
   } catch {
@@ -32,7 +56,29 @@ function verifyAdmin(req: any) {
   }
 }
 
-export default async function handler(req: any, res: any) {
+/*
+|--------------------------------------------------------------------------
+| Validation
+|--------------------------------------------------------------------------
+*/
+
+const actionSchema = z.object({
+  id: z.string().cuid(),
+
+  action: z.enum(["archive", "toggle-read"]),
+});
+
+/*
+|--------------------------------------------------------------------------
+| Handler
+|--------------------------------------------------------------------------
+*/
+
+export default async function handler(
+  req: VercelRequest,
+
+  res: VercelResponse,
+) {
   res.setHeader(
     "Cache-Control",
 
@@ -47,9 +93,21 @@ export default async function handler(req: any, res: any) {
     });
   }
 
+  const ip = getClientIp(req);
+
   const admin = verifyAdmin(req);
 
   if (!admin) {
+    await logSecurityEvent({
+      event: SECURITY_EVENTS.ADMIN_ACTION,
+
+      ipAddress: ip,
+
+      metadata: {
+        action: "FAILED_MESSAGE_ACTION",
+      },
+    });
+
     return res.status(401).json({
       success: false,
 
@@ -57,11 +115,9 @@ export default async function handler(req: any, res: any) {
     });
   }
 
-  const id = String(req.body?.id ?? "").trim();
+  const parsed = actionSchema.safeParse(req.body);
 
-  const action = String(req.body?.action ?? "").trim();
-
-  if (!id || !["delete", "toggle-read"].includes(action)) {
+  if (!parsed.success) {
     return res.status(400).json({
       success: false,
 
@@ -69,45 +125,24 @@ export default async function handler(req: any, res: any) {
     });
   }
 
+  const {
+    id,
+
+    action,
+  } = parsed.data;
+
   try {
-    /*
-      DELETE MESSAGE
-
-      deleteMany avoids throwing
-      if already deleted
-    */
-
-    if (action === "delete") {
-      const deleted = await prisma.message.deleteMany({
-        where: {
-          id,
-        },
-      });
-
-      return res.status(200).json({
-        success: true,
-
-        action: "DELETED",
-
-        count: deleted.count,
-      });
-    }
-
-    /*
-      TOGGLE READ STATUS
-    */
-
-    const current = await prisma.message.findUnique({
+    const message = await prisma.message.findFirst({
       where: {
         id,
-      },
 
-      select: {
-        read: true,
+        verified: true,
+
+        archived: false,
       },
     });
 
-    if (!current) {
+    if (!message) {
       return res.status(404).json({
         success: false,
 
@@ -115,17 +150,69 @@ export default async function handler(req: any, res: any) {
       });
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Archive Message
+    |--------------------------------------------------------------------------
+    */
+
+    if (action === "archive") {
+      await prisma.message.update({
+        where: { id },
+
+        data: {
+          archived: true,
+        },
+      });
+
+      await logSecurityEvent({
+        event: SECURITY_EVENTS.ADMIN_ACTION,
+
+        email: message.email,
+
+        ipAddress: ip,
+
+        metadata: {
+          action: "ARCHIVED_MESSAGE",
+
+          messageId: id,
+        },
+      });
+
+      return res.status(200).json({
+        success: true,
+
+        action: "ARCHIVED",
+      });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Toggle Read
+    |--------------------------------------------------------------------------
+    */
+
     const updated = await prisma.message.update({
-      where: {
-        id,
-      },
+      where: { id },
 
       data: {
-        read: !current.read,
+        read: !message.read,
       },
 
       select: {
         read: true,
+      },
+    });
+
+    await logSecurityEvent({
+      event: SECURITY_EVENTS.ADMIN_ACTION,
+
+      ipAddress: ip,
+
+      metadata: {
+        action: "TOGGLE_READ",
+
+        messageId: id,
       },
     });
 

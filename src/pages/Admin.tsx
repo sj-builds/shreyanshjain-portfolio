@@ -1,83 +1,139 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+
 import { motion } from "framer-motion";
-import { Trash2, Eye, EyeOff, LogOut, Search, LockKeyhole } from "lucide-react";
+
+import { Archive, Eye, EyeOff, LogOut, Search, RefreshCcw, ShieldCheck } from "lucide-react";
+
 import { CustomCursor } from "@/components/CustomCursor";
 
-const SESSION_DURATION_MS = 30 * 60 * 1000;
+const TOKEN_KEY = "admin-token";
+
 const EXPIRY_KEY = "admin-expiry";
+
+const DEFAULT_SESSION_MS = 30 * 60 * 1000;
 
 type Message = {
   id: string;
+
   name: string;
+
   email: string;
+
   subject: string | null;
+
   message: string;
+
   createdAt: string;
+
+  verifiedAt: string | null;
+
   read: boolean;
+};
+
+type Stats = {
+  total: number;
+
+  unread: number;
 };
 
 export function Admin() {
   const [messages, setMessages] = useState<Message[]>([]);
+
+  const [stats, setStats] = useState<Stats>({
+    total: 0,
+    unread: 0,
+  });
+
   const [authenticated, setAuthenticated] = useState(false);
+
   const [checking, setChecking] = useState(true);
+
   const [loading, setLoading] = useState(false);
+
   const [processing, setProcessing] = useState(false);
+
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+
   const [otp, setOtp] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+
   const [error, setError] = useState("");
+
   const [search, setSearch] = useState("");
 
-  const sessionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  function clearSessionTimer() {
-    if (sessionTimer.current) {
-      clearTimeout(sessionTimer.current);
-      sessionTimer.current = null;
+  function clearTimer() {
+    if (timer.current) {
+      clearTimeout(timer.current);
+
+      timer.current = null;
     }
   }
 
-  function armSessionTimer(durationMs = SESSION_DURATION_MS) {
-    clearSessionTimer();
-    sessionStorage.setItem(EXPIRY_KEY, String(Date.now() + durationMs));
-    sessionTimer.current = setTimeout(logout, durationMs);
-  }
-
   function logout() {
-    clearSessionTimer();
-    sessionStorage.removeItem("admin-token");
+    clearTimer();
+
+    sessionStorage.removeItem(TOKEN_KEY);
+
     sessionStorage.removeItem(EXPIRY_KEY);
+
     setAuthenticated(false);
+
     setMessages([]);
-    setError("");
+
+    setStats({
+      total: 0,
+      unread: 0,
+    });
+
     setPassword("");
-    setShowPassword(false);
+
     setOtp("");
   }
 
-  function checkExpiry() {
-    const expiry = Number(sessionStorage.getItem(EXPIRY_KEY));
-    if (!expiry) return;
-    if (Date.now() >= expiry) logout();
+  function startSession(duration = DEFAULT_SESSION_MS) {
+    clearTimer();
+
+    sessionStorage.setItem(
+      EXPIRY_KEY,
+
+      String(Date.now() + duration),
+    );
+
+    timer.current = setTimeout(
+      logout,
+
+      duration,
+    );
   }
 
-  async function loadMessages(): Promise<boolean> {
+  async function loadMessages() {
     setLoading(true);
 
     try {
-      const token = sessionStorage.getItem("admin-token");
+      const token = sessionStorage.getItem(TOKEN_KEY);
 
       if (!token) {
         logout();
+
         return false;
       }
 
-      const res = await fetch("/api/messages", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        "/api/messages",
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
 
       if (!res.ok) {
         logout();
+
         return false;
       }
 
@@ -85,13 +141,24 @@ export function Admin() {
 
       if (!data.success) {
         logout();
+
         return false;
       }
 
       setMessages(data.messages ?? []);
+
+      setStats(
+        data.stats ?? {
+          total: 0,
+
+          unread: 0,
+        },
+      );
+
       return true;
     } catch {
       logout();
+
       return false;
     } finally {
       setLoading(false);
@@ -99,40 +166,41 @@ export function Admin() {
   }
 
   useEffect(() => {
-    async function verifySession() {
-      const token = sessionStorage.getItem("admin-token");
-
-      if (!token) {
-        setChecking(false);
-        return;
-      }
+    async function restore() {
+      const token = sessionStorage.getItem(TOKEN_KEY);
 
       const expiry = Number(sessionStorage.getItem(EXPIRY_KEY));
-      const remaining = expiry - Date.now();
 
-      if (expiry && remaining <= 0) {
-        logout();
+      if (!token || !expiry) {
         setChecking(false);
+
         return;
       }
 
-      const valid = await loadMessages();
-      setAuthenticated(valid);
-      if (valid) armSessionTimer(expiry ? remaining : SESSION_DURATION_MS);
+      const remaining = expiry - Date.now();
+
+      if (remaining <= 0) {
+        logout();
+
+        setChecking(false);
+
+        return;
+      }
+
+      const ok = await loadMessages();
+
+      if (ok) {
+        setAuthenticated(true);
+
+        startSession(remaining);
+      }
+
       setChecking(false);
     }
 
-    function onVisibilityChange() {
-      if (document.visibilityState === "visible") checkExpiry();
-    }
+    restore();
 
-    verifySession();
-    document.addEventListener("visibilitychange", onVisibilityChange);
-
-    return () => {
-      clearSessionTimer();
-      document.removeEventListener("visibilitychange", onVisibilityChange);
-    };
+    return () => clearTimer();
   }, []);
 
   async function login() {
@@ -140,39 +208,55 @@ export function Admin() {
 
     setError("");
 
-    if (password.length === 0 || otp.length !== 6) {
+    if (!password || otp.length !== 6) {
       setError("INVALID_SECURITY_INPUT");
+
       return;
     }
 
     try {
       setProcessing(true);
 
-      const res = await fetch("/api/admin-login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password, code: otp }),
-      });
+      const res = await fetch(
+        "/api/admin-login",
+
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            password,
+
+            code: otp,
+          }),
+        },
+      );
 
       const data = await res.json();
 
       if (!res.ok || !data.success) {
-        throw new Error("ACCESS_DENIED");
+        throw new Error();
       }
 
-      sessionStorage.setItem("admin-token", data.token);
+      sessionStorage.setItem(
+        TOKEN_KEY,
 
-      // clear secrets from memory
+        data.token,
+      );
+
       setPassword("");
+
       setOtp("");
 
-      const loaded = await loadMessages();
+      const ok = await loadMessages();
 
-      if (loaded) {
+      if (ok) {
         setAuthenticated(true);
-        armSessionTimer();
-      } else {
-        setError("ACCESS_DENIED");
+
+        startSession((data.expiresIn ?? 1800) * 1000);
       }
     } catch {
       setError("ACCESS_DENIED");
@@ -181,256 +265,522 @@ export function Admin() {
     }
   }
 
-  async function messageAction(id: string, action: "delete" | "toggle-read") {
-    try {
-      const token = sessionStorage.getItem("admin-token");
+  async function messageAction(
+    id: string,
 
-      if (!token) {
-        logout();
-        return;
-      }
+    action: "archive" | "toggle-read",
+  ) {
+    const token = sessionStorage.getItem(TOKEN_KEY);
 
-      const res = await fetch("/api/message-action", {
+    if (!token) {
+      logout();
+
+      return;
+    }
+
+    const res = await fetch(
+      "/api/message-action",
+
+      {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
+
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ id, action }),
-      });
 
-      if (res.status === 401) {
-        logout();
-        return;
-      }
+        body: JSON.stringify({
+          id,
 
-      const data = await res.json();
-      if (!data.success) return;
+          action,
+        }),
+      },
+    );
 
-      if (action === "delete") {
-        setMessages((prev) => prev.filter((item) => item.id !== id));
-      }
+    if (res.status === 401) {
+      logout();
 
-      if (action === "toggle-read") {
-        setMessages((prev) =>
-          prev.map((item) => (item.id === id ? { ...item, read: !item.read } : item)),
-        );
-      }
-    } catch (err) {
-      console.error(err);
+      return;
     }
+
+    const data = await res.json();
+
+    if (!data.success) return;
+
+    if (action === "archive") {
+      setMessages((prev) => prev.filter((m) => m.id !== id));
+    }
+
+    if (action === "toggle-read") {
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === id
+            ? {
+                ...m,
+
+                read: !m.read,
+              }
+            : m,
+        ),
+      );
+    }
+
+    loadMessages();
   }
 
   const filtered = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    if (!query) return messages;
+    const q = search
+
+      .trim()
+
+      .toLowerCase();
+
+    if (!q) return messages;
 
     return messages.filter(
-      (msg) =>
-        (msg.name ?? "").toLowerCase().includes(query) ||
-        (msg.email ?? "").toLowerCase().includes(query) ||
-        (msg.message ?? "").toLowerCase().includes(query),
-    );
-  }, [search, messages]);
+      (m) =>
+        m.name
 
+          .toLowerCase()
+
+          .includes(q) ||
+        m.email
+
+          .toLowerCase()
+
+          .includes(q) ||
+        m.message
+
+          .toLowerCase()
+
+          .includes(q),
+    );
+  }, [messages, search]);
   if (checking) {
     return (
-      <main className="min-h-screen bg-background flex items-center justify-center font-mono text-[oklch(0.85_0.18_195)]">
-        VERIFYING_SESSION...
-      </main>
+      <div
+        className="
+min-h-screen
+grid
+place-items-center
+bg-background
+text-foreground
+font-mono
+"
+      >
+        INITIALIZING SECURE CONSOLE...
+      </div>
     );
   }
 
+  /*
+|--------------------------------------------------------------------------
+| LOGIN UI
+|--------------------------------------------------------------------------
+*/
+
   if (!authenticated) {
     return (
-      <main className="min-h-screen bg-background text-foreground flex items-center justify-center px-6">
+      <>
         <CustomCursor />
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="glass-strong border border-border rounded-3xl p-8 max-w-md w-full shadow-2xl"
+        <main
+          className="
+min-h-screen
+grid
+place-items-center
+bg-background
+px-6
+"
         >
-          <div className="flex items-center gap-3 text-[oklch(0.85_0.18_195)]">
-            <LockKeyhole size={22} />
-            <span className="font-mono text-xs tracking-[0.4em]">ADMIN_GATEWAY</span>
-          </div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.96,
+            }}
 
-          <h1 className="mt-6 text-4xl font-display font-bold">Secure Access</h1>
+            animate={{
+              opacity: 1,
+              scale: 1,
+            }}
 
-          <p className="mt-3 text-sm text-muted-foreground">
-            Password + Google Authenticator required
-          </p>
-
-          <div className="mt-8 space-y-5">
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && login()}
-                placeholder="admin password"
-                aria-label="Admin password"
-                className="w-full bg-transparent border-b border-border py-3 pr-8 outline-none focus:border-[oklch(0.85_0.18_195)] transition-colors"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword((v) => !v)}
-                aria-label={showPassword ? "Hide password" : "Show password"}
-                className="absolute right-0 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            className="
+glass-strong
+w-full
+max-w-md
+rounded-2xl
+p-8
+space-y-6
+"
+          >
+            <div>
+              <div
+                className="
+flex
+items-center
+gap-2
+font-mono
+text-xs
+tracking-widest
+text-muted-foreground
+"
               >
-                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-              </button>
+                <ShieldCheck size={14} />
+                ADMIN_GATEWAY
+              </div>
+
+              <h1
+                className="
+mt-3
+font-display
+text-3xl
+"
+              >
+                Secure Console
+              </h1>
             </div>
 
-            <input
-              value={otp}
-              maxLength={6}
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
-              onKeyDown={(e) => e.key === "Enter" && login()}
-              placeholder="Google Authenticator code"
-              aria-label="Authenticator code"
-              className="w-full bg-transparent border-b border-border py-3 outline-none tracking-[0.3em] focus:border-[oklch(0.85_0.18_195)] transition-colors"
-            />
+            <div className="space-y-4">
+              <input
+                type={showPassword ? "text" : "password"}
+
+                value={password}
+
+                onChange={(e) => setPassword(e.target.value)}
+
+                placeholder="master password"
+
+                className="
+w-full
+bg-transparent
+border-b
+border-border
+py-3
+outline-none
+"
+              />
+
+              <div
+                className="
+flex
+gap-3
+"
+              >
+                <input
+                  value={otp}
+
+                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+
+                  maxLength={6}
+
+                  placeholder="2FA CODE"
+
+                  className="
+flex-1
+bg-transparent
+border-b
+border-border
+py-3
+outline-none
+"
+                />
+
+                <button
+                  type="button"
+
+                  onClick={() => setShowPassword((v) => !v)}
+                >
+                  {showPassword ? <EyeOff /> : <Eye />}
+                </button>
+              </div>
+            </div>
 
             {error && (
-              <p role="alert" className="text-xs text-red-400">
+              <p
+                className="
+text-sm
+text-red-400
+"
+              >
                 {error}
               </p>
             )}
 
             <button
-              disabled={processing}
               onClick={login}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-[oklch(0.85_0.18_195)] to-[oklch(0.72_0.22_295)] text-background tracking-[0.25em] text-xs glow-cyan disabled:opacity-50 transition"
+
+              disabled={processing}
+
+              className="
+w-full
+rounded-xl
+py-3
+bg-white
+text-black
+font-mono
+disabled:opacity-50
+"
             >
-              {processing ? "VERIFYING..." : "UNLOCK SYSTEM"}
+              {processing ? "VERIFYING..." : "AUTHENTICATE"}
             </button>
-          </div>
-        </motion.div>
-      </main>
+          </motion.div>
+        </main>
+      </>
     );
   }
 
-  const unreadCount = messages.filter((m) => !m.read).length;
+  /*
+|--------------------------------------------------------------------------
+| DASHBOARD
+|--------------------------------------------------------------------------
+*/
 
   return (
-    <main className="min-h-screen bg-background text-foreground px-6 py-10">
+    <>
       <CustomCursor />
 
-      <div className="mx-auto max-w-6xl">
-        <header className="flex justify-between gap-6 flex-wrap">
-          <div>
-            <p className="font-mono text-xs tracking-[0.4em] text-[oklch(0.85_0.18_195)]">
-              MESSAGE_CENTER
-            </p>
+      <main
+        className="
+min-h-screen
+bg-background
+text-foreground
+p-8
+"
+      >
+        <div
+          className="
+max-w-7xl
+mx-auto
+space-y-8
+"
+        >
+          <header
+            className="
+flex
+justify-between
+items-center
+"
+          >
+            <div>
+              <p
+                className="
+font-mono
+text-xs
+text-muted-foreground
+"
+              >
+                SHREYANSH.SYS
+              </p>
 
-            <h1 className="mt-3 text-5xl font-display font-bold">Admin Console</h1>
+              <h1
+                className="
+font-display
+text-4xl
+"
+              >
+                Message Console
+              </h1>
+            </div>
 
-            <p className="mt-3 text-muted-foreground">
-              {messages.length} transmissions · {unreadCount} unread
-            </p>
+            <div
+              className="
+flex
+gap-3
+"
+            >
+              <button
+                onClick={loadMessages}
 
-            <div className="mt-2 flex flex-wrap gap-2 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
-              <span className="border border-border rounded-full px-3 py-1">
-                SECURE_SESSION_ACTIVE
-              </span>
-              <span className="border border-border rounded-full px-3 py-1">TOTP_PROTECTED</span>
-              <span className="border border-border rounded-full px-3 py-1">JWT_30M</span>
+                className="
+glass
+p-3
+rounded-xl
+"
+              >
+                <RefreshCcw size={18} />
+              </button>
+
+              <button
+                onClick={logout}
+
+                className="
+glass
+p-3
+rounded-xl
+"
+              >
+                <LogOut size={18} />
+              </button>
+            </div>
+          </header>
+
+          <div
+            className="
+grid
+sm:grid-cols-2
+gap-4
+"
+          >
+            <div className="glass rounded-xl p-5">
+              <div className="text-sm text-muted-foreground">TOTAL</div>
+
+              <div className="text-3xl">{stats.total}</div>
+            </div>
+
+            <div className="glass rounded-xl p-5">
+              <div className="text-sm text-muted-foreground">UNREAD</div>
+
+              <div className="text-3xl">{stats.unread}</div>
             </div>
           </div>
 
-          <button
-            onClick={logout}
-            className="flex items-center gap-2 border border-border px-5 py-2 rounded-xl hover:bg-white/5 h-fit transition-colors"
+          <div
+            className="
+glass
+rounded-xl
+p-4
+flex
+gap-3
+items-center
+"
           >
-            <LogOut size={16} />
-            LOGOUT
-          </button>
-        </header>
+            <Search size={18} />
 
-        <div className="mt-10 flex items-center gap-3 border-b border-border">
-          <Search size={16} />
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search transmissions..."
-            aria-label="Search transmissions"
-            className="flex-1 bg-transparent py-3 outline-none"
-          />
-        </div>
+            <input
+              value={search}
 
-        <section className="mt-10 space-y-5">
-          {loading && <p>Loading transmissions...</p>}
+              onChange={(e) => setSearch(e.target.value)}
 
-          {!loading && filtered.length === 0 && (
-            <p className="text-muted-foreground">No transmissions found.</p>
-          )}
+              placeholder="Search transmissions..."
 
-          {filtered.map((msg) => (
-            <motion.article
-              key={msg.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="glass-strong border border-border rounded-2xl p-6"
-            >
-              <div className="flex justify-between gap-5 flex-wrap">
-                <div>
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <h2 className="text-2xl font-semibold">{msg.name}</h2>
-                    <span
-                      className={`text-[10px] font-mono px-3 py-1 rounded-full border ${
-                        msg.read
-                          ? "border-border text-muted-foreground"
-                          : "border-[oklch(0.85_0.18_195/0.5)] text-[oklch(0.85_0.18_195)]"
-                      }`}
+              className="
+bg-transparent
+outline-none
+flex-1
+"
+            />
+          </div>
+
+          <section
+            className="
+space-y-4
+"
+          >
+            {loading && <p className="font-mono">SYNCING...</p>}
+
+            {filtered.map((msg) => (
+              <div
+                key={msg.id}
+
+                className="
+glass-strong
+rounded-xl
+p-6
+space-y-4
+"
+              >
+                <div
+                  className="
+flex
+justify-between
+gap-5
+"
+                >
+                  <div>
+                    <h2
+                      className="
+font-display
+text-xl
+"
                     >
-                      {msg.read ? "READ" : "NEW"}
-                    </span>
+                      {msg.name}
+                    </h2>
+
+                    <p
+                      className="
+text-sm
+text-muted-foreground
+"
+                    >
+                      {msg.email}
+                    </p>
                   </div>
 
-                  <a href={`mailto:${msg.email}`} className="text-[oklch(0.85_0.18_195)]">
-                    {msg.email}
-                  </a>
+                  <div
+                    className="
+flex
+gap-3
+"
+                  >
+                    <button
+                      onClick={() =>
+                        messageAction(
+                          msg.id,
+
+                          "toggle-read",
+                        )
+                      }
+                    >
+                      {msg.read ? <EyeOff /> : <Eye />}
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        messageAction(
+                          msg.id,
+
+                          "archive",
+                        )
+                      }
+                    >
+                      <Archive />
+                    </button>
+                  </div>
                 </div>
 
-                <span className="text-xs text-muted-foreground">
-                  {new Date(msg.createdAt).toLocaleString("en-IN", {
-                    timeZone: "Asia/Kolkata",
-                  })}
-                </span>
-              </div>
-
-              <p className="mt-6 leading-7 text-muted-foreground">{msg.message}</p>
-
-              <div className="mt-6 flex gap-3">
-                <button
-                  onClick={() => messageAction(msg.id, "toggle-read")}
-                  className="border border-border rounded-lg px-4 py-2 flex gap-2 items-center hover:bg-white/5 transition-colors"
+                <div
+                  className="
+font-mono
+text-xs
+text-muted-foreground
+"
                 >
-                  <Eye size={15} />
-                  {msg.read ? "MARK UNREAD" : "MARK READ"}
-                </button>
+                  Verified: {msg.verifiedAt ? new Date(msg.verifiedAt).toLocaleString() : "YES"}
+                </div>
 
-                <button
-                  onClick={() => {
-                    if (confirm("Delete transmission?")) {
-                      messageAction(msg.id, "delete");
-                    }
-                  }}
-                  className="border border-red-500/40 text-red-400 rounded-lg px-4 py-2 flex gap-2 items-center hover:bg-red-500/10 transition-colors"
+                <p
+                  className="
+leading-relaxed
+"
                 >
-                  <Trash2 size={15} />
-                  DELETE
-                </button>
+                  {msg.message}
+                </p>
+
+                <div
+                  className="
+text-xs
+text-muted-foreground
+"
+                >
+                  {new Date(msg.createdAt).toLocaleString()}
+                </div>
               </div>
-            </motion.article>
-          ))}
-        </section>
-      </div>
-    </main>
+            ))}
+
+            {filtered.length === 0 && (
+              <p
+                className="
+font-mono
+text-muted-foreground
+"
+              >
+                NO TRANSMISSIONS FOUND
+              </p>
+            )}
+          </section>
+        </div>
+      </main>
+    </>
   );
 }
