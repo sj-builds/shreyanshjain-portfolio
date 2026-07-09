@@ -191,9 +191,7 @@ export async function sendContactNotification({
 
     replyTo: email,
 
-    subject: subject
-      ? `Portfolio Contact: ${subject}`
-      : `New verified message from ${name}`,
+    subject: subject ? `Portfolio Contact: ${subject}` : `New verified message from ${name}`,
 
     html: `
 
@@ -257,13 +255,7 @@ Stored securely inside SHREYANSH.SYS
 |--------------------------------------------------------------------------
 */
 
-export async function sendVisitorConfirmation({
-  email,
-  name,
-}: {
-  email: string;
-  name: string;
-}) {
+export async function sendVisitorConfirmation({ email, name }: { email: string; name: string }) {
   const safeName = escapeHtml(name);
 
   await transporter.sendMail({

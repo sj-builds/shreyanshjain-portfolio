@@ -1,18 +1,9 @@
 import bcrypt from "bcryptjs";
 
+async function main() {
+  const hash = await bcrypt.hash("Security@Shreyansh@Portfolio", 12);
 
-async function main(){
-
-const hash =
-await bcrypt.hash(
-"Security@Shreyansh@Portfolio",
-12
-);
-
-
-console.log(hash);
-
+  console.log(hash);
 }
-
 
 main();
