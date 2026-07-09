@@ -1,361 +1,365 @@
 <div align="center">
 
-# Shreyansh Jain — AI Engineering & Cybersecurity Portfolio
+# SHREYANSH.SYS
 
-A production-grade developer portfolio engineered as a secure full-stack system with cinematic UI, encrypted contact workflow, admin console, and modern cloud architecture.
+### Software Engineering × Cybersecurity Portfolio System
 
-[![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![React](https://img.shields.io/badge/React-19.x-149ECA?logo=react&logoColor=white)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4.x-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Prisma](https://img.shields.io/badge/Prisma-7.x-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+A production-grade personal engineering platform combining a cinematic developer experience, secure backend architecture, verified communication workflows, and cloud-native deployment.
 
 <br />
 
-<p align="center">
-  <a href="https://shreyanshjain.vercel.app">
-    <img
-      src="./preview.gif"
-      alt="Portfolio Preview"
-      width="100%"
-    />
-  </a>
-</p>
+[![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+
+<br />
+
+<a href="https://shreyanshjain.vercel.app">
+Live System
+</a>
 
 </div>
 
-
-## Live Website
-
-```text
-https://shreyanshjain.vercel.app
-```
 
 ---
 
 # Overview
 
-**SHREYANSH.SYS** is a futuristic software engineering portfolio built beyond a traditional static website.
+**SHREYANSH.SYS** is not a traditional static portfolio website.
 
-It combines a cinematic cybersecurity-inspired interface with real production backend systems including:
-
-- custom secure contact gateway
-- email ownership verification
-- protected admin dashboard
-- database persistence
-- audit logging
-- authentication security
+It is designed as a full-stack personal engineering system demonstrating modern frontend development, backend architecture, security principles, database design, authentication workflows, and production deployment practices.
 
 The project focuses on:
 
-- clean architecture
-- security-first engineering
-- performance
-- maintainability
-- premium developer experience
+- secure software design
+- clean system architecture
+- performance-focused interfaces
+- production reliability
+- maintainable engineering practices
 
 
 ---
 
-# Core Features
+# Core Objectives
+
+The goal of this project is to demonstrate the ability to build:
+
+- visually refined user experiences
+- secure backend services
+- real-world authentication flows
+- database-driven applications
+- production-ready cloud systems
 
 
-## Interface
+---
 
-- Cinematic cyber-inspired experience
-- Glassmorphism surfaces
-- Terminal-style interactions
-- Responsive layouts
-- Smooth Framer Motion animations
-- Custom cursor system
-- Optimized SPA navigation
+# User Experience
 
-
-## Secure Contact Gateway
-
-Custom-built replacement for third-party forms.
-
-Features:
-
-- Visitor message storage
-- Email verification before delivery
-- Secure verification tokens
-- SHA-256 token hashing
-- Expiring verification links
-- Gmail SMTP delivery
-- Visitor confirmation emails
-- Owner notification emails
-
-
-## Admin Console
-
-Private dashboard system:
-
-- Password authentication
-- TOTP multi-factor authentication
-- JWT protected sessions
-- Secure API authorization
-- Message management
-- Read/archive workflow
-
-
-## Security Engineering
+The interface follows a futuristic cybersecurity-inspired design language.
 
 Implemented:
 
-- Input validation with Zod
-- Environment isolation
-- HTML escaping
-- Token hashing
-- Audit logs
-- Rate limit database model
-- Secure HTTP headers
-- Protected API routes
+- cinematic landing experience
+- terminal-inspired interactions
+- glassmorphism interface system
+- responsive layouts
+- smooth motion architecture
+- micro-interactions
+- dark premium visual identity
 
 
 ---
 
-# Tech Stack
+# Secure Contact Gateway
 
+The contact system is custom-built instead of relying on third-party form services.
 
-| Layer | Technology |
-|-|-|
-| Frontend | React |
-| Language | TypeScript |
-| Build | Vite |
-| Styling | TailwindCSS |
-| Animation | Framer Motion |
-| Routing | React Router |
-| Validation | Zod |
-| Backend | Vercel Serverless Functions |
-| ORM | Prisma |
-| Database | PostgreSQL (Neon) |
-| Email | Nodemailer + Gmail SMTP |
-| Authentication | JWT + TOTP |
-| Deployment | Vercel |
-
-
----
-
-# Architecture
-
+Flow:
 
 ```text
 Visitor
    |
    |
-React Frontend
+Submit Message
    |
    |
-Vercel Serverless API
+Input Validation
    |
-   +------------+
-   |            |
- Prisma      SMTP
-   |            |
- Neon DB     Gmail
+   |
+Secure Database Storage
+   |
+   |
+Email Verification Token
+   |
+   |
+Visitor Verification
+   |
+   |
+Message Delivery
 ```
 
+Features:
 
-Main flows:
+- verified email ownership
+- secure token generation
+- hashed verification tokens
+- expiring verification links
+- database persistence
+- automated email workflows
+- visitor confirmation system
+
+
+---
+
+# Admin Security System
+
+A private administrative layer manages verified communication.
+
+Implemented security:
+
+- password authentication
+- multi-factor authentication
+- JWT-based sessions
+- protected API endpoints
+- authorization middleware
+- message management controls
+
+
+---
+
+# Security Engineering
+
+Security considerations implemented:
+
+| Area | Implementation |
+|-|-|
+| Input Security | Schema validation |
+| Token Security | Cryptographic hashing |
+| Authentication | JWT + MFA |
+| Database Access | ORM-controlled queries |
+| Secrets | Environment isolation |
+| Email Safety | Verification workflow |
+| Monitoring | Security event logging |
+| Headers | Hardened HTTP policies |
+
+
+---
+
+# System Architecture
 
 
 ```text
-Contact Submit
+                 USER
 
-User
- ↓
+                  |
+                  |
+
+           React Frontend
+
+                  |
+                  |
+
+        Vercel Serverless API
+
+                  |
+
+       +----------+----------+
+       |                     |
+
+    Prisma ORM          SMTP Service
+
+       |                     |
+
+ PostgreSQL Database     Email Delivery
+
+```
+
+
+---
+
+# Technology Stack
+
+
+## Frontend
+
+| Technology | Purpose |
+|-|-|
+| React | Interface development |
+| TypeScript | Type safety |
+| Vite | Build system |
+| TailwindCSS | Styling architecture |
+| Framer Motion | Animation system |
+| React Router | Client navigation |
+
+
+---
+
+## Backend
+
+| Technology | Purpose |
+|-|-|
+| Vercel Functions | Serverless APIs |
+| Prisma | Database ORM |
+| PostgreSQL | Persistent storage |
+| Nodemailer | Email delivery |
+| Zod | Runtime validation |
+| JWT | Authentication |
+
+
+---
+
+# Database Architecture
+
+
+Main models:
+
+```text
+Message
+
+- visitor identity
+- message content
+- verification state
+- admin state
+- security metadata
+- timestamps
+
+
+SecurityLog
+
+- security events
+- audit records
+- metadata tracking
+
+
+RateLimit
+
+- abuse prevention
+- request control
+
+
+OTP
+
+- verification workflow support
+```
+
+
+---
+
+# API Architecture
+
+
+```text
 /api/contact
- ↓
-Validate Input
- ↓
-Store Message
- ↓
-Generate Token
- ↓
-Send Verification Email
+
+Creates secure contact request
 
 
-Verification
-
-Email Link
- ↓
 /api/verify-contact
- ↓
-Hash Token Check
- ↓
-Mark Verified
- ↓
-Notify Owner
- ↓
-Confirm Visitor
+
+Handles email ownership verification
+
+
+/api/admin-login
+
+Authenticates admin access
+
+
+/api/messages
+
+Retrieves verified messages
+
+
+/api/message-action
+
+Handles admin operations
 ```
 
 
 ---
 
-# Folder Structure
+# Production Infrastructure
+
+
+| Service | Role |
+|-|-|
+| Vercel | Hosting & Serverless Runtime |
+| Neon PostgreSQL | Cloud Database |
+| Gmail SMTP | Email Infrastructure |
+| GitHub | Version Control |
+
+
+---
+
+# Repository Availability
+
+This repository is publicly available for:
+
+- technical evaluation
+- portfolio review
+- architecture demonstration
+- engineering discussion
+
+It is not distributed as:
+
+- a starter template
+- reusable UI kit
+- open-source package
+
+
+Internal configuration, credentials, and deployment secrets are intentionally excluded.
+
+
+---
+
+# Engineering Status
 
 
 ```text
-.
-├── api/
-│   ├── contact.ts
-│   ├── verify-contact.ts
-│   ├── admin-login.ts
-│   ├── messages.ts
-│   ├── message-action.ts
-│   │
-│   └── lib/
-│       └── prisma.ts
-│
-├── prisma/
-│   ├── schema.prisma
-│   └── migrations/
-│
-├── public/
-│
-├── src/
-│   ├── components/
-│   ├── data/
-│   ├── lib/
-│   │   ├── mail.ts
-│   │   ├── security.ts
-│   │   ├── token.ts
-│   │   └── validation.ts
-│   │
-│   ├── pages/
-│   │   ├── Admin.tsx
-│   │   └── VerifyContact.tsx
-│   │
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── styles.css
-│
-├── vercel.json
-├── vite.config.ts
-└── package.json
+Frontend Interface              COMPLETE
+
+Responsive Design               COMPLETE
+
+Secure Contact Gateway          COMPLETE
+
+Email Verification              COMPLETE
+
+Database Integration            COMPLETE
+
+Admin Authentication            COMPLETE
+
+Security Logging                COMPLETE
+
+Production Deployment           COMPLETE
 ```
 
 
 ---
 
-# Local Setup
+# Author
 
 
-Clone:
+**Shreyansh Jain**
 
-```bash
-git clone https://github.com/sj-builds/YOUR_REPO.git
-```
+Software Engineering • AI Development • Cybersecurity
 
 
-Install:
-
-```bash
-npm install
-```
+GitHub  
+https://github.com/sj-builds
 
 
-Setup database:
-
-```bash
-npx prisma generate
-
-npx prisma migrate dev
-```
+LinkedIn  
+https://linkedin.com/in/shreyanshjain-tech
 
 
-Start development:
-
-```bash
-npm run dev
-```
+X  
+https://x.com/jshreyansh962
 
 
----
-
-# Environment Variables
-
-
-Create `.env`:
-
-
-```env
-DATABASE_URL=
-
-SMTP_HOST=
-SMTP_PORT=
-SMTP_EMAIL=
-SMTP_PASSWORD=
-
-OWNER_EMAIL=
-
-SITE_URL=
-
-JWT_SECRET=
-
-ADMIN_PASSWORD_HASH=
-ADMIN_TOTP_SECRET=
-```
-
-
----
-
-# Build
-
-
-```bash
-npm run build
-```
-
-
-Preview:
-
-
-```bash
-npm run preview
-```
-
-
----
-
-# Deployment
-
-
-Production deployment:
-
-- Platform: Vercel
-- Database: Neon PostgreSQL
-- Runtime: Serverless Functions
-
-
-Vercel settings:
-
-
-```text
-Build Command:
-npm run build
-
-Output:
-dist
-```
-
-
----
-
-# Status
-
-
-```text
-Frontend UI                  COMPLETE
-Secure Contact Gateway       COMPLETE
-Email Verification System    COMPLETE
-Admin Console                COMPLETE
-Database Integration         COMPLETE
-Production Deployment        COMPLETE
-```
+Email  
+jshreyansh962@gmail.com
 
 
 ---
@@ -363,37 +367,21 @@ Production Deployment        COMPLETE
 # License
 
 
-UNLICENSED — All rights reserved.
+Copyright © 2026 Shreyansh Jain.
 
-This project is publicly available only for portfolio demonstration and evaluation.
+All Rights Reserved.
 
-Copying, redistributing, modifying, or using any source code, assets, design systems, or implementation details without written permission is prohibited.
+This repository is provided publicly for portfolio demonstration and evaluation purposes only.
 
+No permission is granted to copy, modify, distribute, sublicense, or reuse any source code, design system, assets, or implementation details without explicit written permission.
 
----
-
-# Contact
-
-
-**Shreyansh Jain**
-
-GitHub:
-https://github.com/sj-builds
-
-LinkedIn:
-https://www.linkedin.com/in/shreyanshjain-tech
-
-X:
-https://x.com/jshreyansh962
-
-Email:
-jshreyansh962@gmail.com
+The availability of this repository does not constitute an open-source license.
 
 
 ---
 
 <div align="center">
 
-**Designed with precision. Built with security. Engineered to ship.**
+### Designed with precision. Built with security. Engineered to ship.
 
 </div>
