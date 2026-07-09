@@ -1,10 +1,10 @@
 <div align="center">
 
-# SHREYANSH.SYS
+# SHREYANSH.SYS — AI Software Engineer & Cybersecurity Portfolio
 
-### Software Engineering × Cybersecurity Portfolio System
+### Full-Stack Developer Portfolio built with React, TypeScript, Secure Backend Architecture, PostgreSQL, Authentication Systems, and Cloud Deployment
 
-A production-grade personal engineering platform combining a cinematic developer experience, secure backend architecture, verified communication workflows, and cloud-native deployment.
+A production-grade personal engineering platform combining cinematic frontend design, secure communication workflows, database-driven architecture, and cybersecurity-focused software engineering practices.
 
 <br />
 
@@ -13,153 +13,217 @@ A production-grade personal engineering platform combining a cinematic developer
 [![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-Cloud-black?logo=vercel)](https://vercel.com/)
 
 <br />
 
-<a href="https://shreyanshjain.vercel.app">
-Live System
-</a>
+<p align="center">
+  <a href="https://shreyanshjain.vercel.app">
+    <img
+      src="./preview.gif"
+      alt="SHREYANSH.SYS Full Stack Developer Portfolio Preview"
+      width="100%"
+    />
+  </a>
+</p>
+
+<br />
+
+### [View Live Deployment →](https://shreyanshjain.vercel.app)
 
 </div>
 
 
 ---
 
+
 # Overview
 
-**SHREYANSH.SYS** is not a traditional static portfolio website.
 
-It is designed as a full-stack personal engineering system demonstrating modern frontend development, backend architecture, security principles, database design, authentication workflows, and production deployment practices.
+**SHREYANSH.SYS** is a production-style full-stack developer portfolio created by **Shreyansh Jain**.
 
-The project focuses on:
+Unlike traditional static portfolio websites, this project is engineered as a complete software system demonstrating:
 
-- secure software design
-- clean system architecture
-- performance-focused interfaces
-- production reliability
-- maintainable engineering practices
+- frontend engineering
+- backend API architecture
+- cybersecurity practices
+- database management
+- authentication workflows
+- secure communication pipelines
+- cloud deployment
+
+
+The platform combines a premium cinematic user interface with real-world software engineering concepts used in modern applications.
+
+
+---
+
+
+# Project Highlights
+
+
+- Full-stack portfolio system built from scratch
+- Custom backend replacing third-party form services
+- Secure Contact Gateway architecture
+- Email ownership verification workflow
+- Protected administrator environment
+- JWT authentication system
+- Multi-factor authentication support
+- PostgreSQL database persistence
+- Security audit logging
+- Serverless cloud infrastructure
 
 
 ---
 
-# Core Objectives
 
-The goal of this project is to demonstrate the ability to build:
+# Technical Areas Demonstrated
 
-- visually refined user experiences
-- secure backend services
-- real-world authentication flows
-- database-driven applications
-- production-ready cloud systems
+
+This project demonstrates practical experience in:
+
+
+- Full Stack Web Development
+- Frontend Engineering
+- Backend Development
+- REST API Architecture
+- Secure Software Engineering
+- Authentication Systems
+- Database Architecture
+- Cloud Deployment
+- UI/UX Engineering
+- Modern TypeScript Development
+- Cybersecurity Implementation
 
 
 ---
+
 
 # User Experience
 
-The interface follows a futuristic cybersecurity-inspired design language.
+
+The interface follows a futuristic cybersecurity-inspired design system.
+
 
 Implemented:
 
+
 - cinematic landing experience
 - terminal-inspired interactions
-- glassmorphism interface system
+- glassmorphism interface components
+- dark premium visual system
 - responsive layouts
-- smooth motion architecture
-- micro-interactions
-- dark premium visual identity
+- smooth animation architecture
+- interactive micro-experiences
+- optimized navigation flow
 
 
 ---
+
 
 # Secure Contact Gateway
 
-The contact system is custom-built instead of relying on third-party form services.
 
-Flow:
+A custom-built secure communication system replacing external form providers.
+
+
+Architecture:
+
 
 ```text
 Visitor
-   |
-   |
-Submit Message
-   |
-   |
+
+   ↓
+
+Contact Submission
+
+   ↓
+
 Input Validation
-   |
-   |
-Secure Database Storage
-   |
-   |
-Email Verification Token
-   |
-   |
-Visitor Verification
-   |
-   |
-Message Delivery
+
+   ↓
+
+Database Storage
+
+   ↓
+
+Secure Token Generation
+
+   ↓
+
+Email Ownership Verification
+
+   ↓
+
+Verified Message Delivery
 ```
+
 
 Features:
 
-- verified email ownership
-- secure token generation
-- hashed verification tokens
+
+- email ownership verification
+- cryptographically secure tokens
+- hashed verification storage
 - expiring verification links
-- database persistence
-- automated email workflows
-- visitor confirmation system
+- automated mail workflow
+- visitor confirmation emails
+- owner notification system
 
 
 ---
 
+
 # Admin Security System
 
-A private administrative layer manages verified communication.
 
-Implemented security:
+Private administration environment for verified communications.
+
+
+Security features:
+
 
 - password authentication
 - multi-factor authentication
 - JWT-based sessions
-- protected API endpoints
-- authorization middleware
-- message management controls
+- protected serverless APIs
+- authorization validation
+- message lifecycle management
 
 
 ---
+
 
 # Security Engineering
 
-Security considerations implemented:
 
-| Area | Implementation |
+| Security Area | Implementation |
 |-|-|
-| Input Security | Schema validation |
-| Token Security | Cryptographic hashing |
-| Authentication | JWT + MFA |
-| Database Access | ORM-controlled queries |
+| Input Protection | Runtime schema validation |
+| Token Handling | Cryptographic hashing |
+| Authentication | JWT + MFA workflow |
+| Database Layer | ORM-controlled access |
 | Secrets | Environment isolation |
-| Email Safety | Verification workflow |
-| Monitoring | Security event logging |
-| Headers | Hardened HTTP policies |
+| Email Security | Ownership verification |
+| Monitoring | Audit logging |
+| HTTP Protection | Security headers |
 
 
 ---
+
 
 # System Architecture
 
 
 ```text
+
                  USER
 
                   |
-                  |
 
-           React Frontend
+          React Application
 
-                  |
                   |
 
         Vercel Serverless API
@@ -167,86 +231,119 @@ Security considerations implemented:
                   |
 
        +----------+----------+
-       |                     |
-
-    Prisma ORM          SMTP Service
 
        |                     |
 
- PostgreSQL Database     Email Delivery
+   Prisma ORM           SMTP Layer
+
+       |                     |
+
+ PostgreSQL          Email Delivery
+
 
 ```
 
 
 ---
+
+
+# Engineering Decisions
+
+
+| Decision | Purpose |
+|-|-|
+| Custom Contact Gateway | Avoid dependency on external form providers |
+| Serverless Backend | Lightweight scalable execution |
+| PostgreSQL Database | Reliable structured persistence |
+| Prisma ORM | Type-safe database operations |
+| Email Verification | Prevent fake submissions |
+| JWT Authentication | Stateless authorization |
+| MFA Security | Additional admin protection |
+| Audit Logging | Security visibility |
+
+
+---
+
 
 # Technology Stack
 
 
 ## Frontend
 
-| Technology | Purpose |
+
+| Technology | Engineering Usage |
 |-|-|
-| React | Interface development |
-| TypeScript | Type safety |
-| Vite | Build system |
-| TailwindCSS | Styling architecture |
-| Framer Motion | Animation system |
-| React Router | Client navigation |
+| React 19 | Component-based UI architecture |
+| TypeScript | Type-safe development |
+| Vite | Modern build optimization |
+| TailwindCSS | Scalable styling system |
+| Framer Motion | Animation engineering |
+| React Router | SPA navigation |
 
 
 ---
+
 
 ## Backend
 
-| Technology | Purpose |
+
+| Technology | Engineering Usage |
 |-|-|
-| Vercel Functions | Serverless APIs |
-| Prisma | Database ORM |
-| PostgreSQL | Persistent storage |
-| Nodemailer | Email delivery |
+| Vercel Functions | Serverless backend APIs |
+| Prisma | Database abstraction |
+| PostgreSQL | Relational data storage |
+| Nodemailer | Email communication |
 | Zod | Runtime validation |
-| JWT | Authentication |
+| JWT | Secure authorization |
 
 
 ---
 
-# Database Architecture
+
+# Data Architecture
 
 
-Main models:
+## Message
 
-```text
-Message
 
-- visitor identity
-- message content
-- verification state
-- admin state
+Handles:
+
+- visitor information
+- message lifecycle
+- verification status
+- admin states
 - security metadata
-- timestamps
 
 
-SecurityLog
-
-- security events
-- audit records
-- metadata tracking
+## SecurityLog
 
 
-RateLimit
+Tracks:
+
+- verification events
+- authentication activity
+- security actions
+
+
+## RateLimit
+
+
+Supports:
 
 - abuse prevention
-- request control
+- request control mechanisms
 
 
-OTP
+## OTP
 
-- verification workflow support
-```
+
+Supports:
+
+- multi-factor authentication workflows
 
 
 ---
+
 
 # API Architecture
 
@@ -254,38 +351,56 @@ OTP
 ```text
 /api/contact
 
-Creates secure contact request
+Secure message creation
 
 
 /api/verify-contact
 
-Handles email ownership verification
+Email verification workflow
 
 
 /api/admin-login
 
-Authenticates admin access
+Administrator authentication
 
 
 /api/messages
 
-Retrieves verified messages
+Protected message retrieval
 
 
 /api/message-action
 
-Handles admin operations
+Admin message operations
 ```
 
 
 ---
 
+
+# Performance & Optimization
+
+
+Implemented:
+
+
+- optimized production builds
+- asset compression
+- efficient code splitting
+- static resource caching
+- serverless execution model
+- responsive rendering
+
+
+---
+
+
 # Production Infrastructure
 
 
-| Service | Role |
+| Platform | Purpose |
 |-|-|
-| Vercel | Hosting & Serverless Runtime |
+| Vercel | Hosting + Serverless Runtime |
 | Neon PostgreSQL | Cloud Database |
 | Gmail SMTP | Email Infrastructure |
 | GitHub | Version Control |
@@ -293,20 +408,25 @@ Handles admin operations
 
 ---
 
+
 # Repository Availability
+
 
 This repository is publicly available for:
 
+
 - technical evaluation
-- portfolio review
-- architecture demonstration
-- engineering discussion
+- recruiter review
+- architecture discussion
+- portfolio demonstration
 
-It is not distributed as:
 
-- a starter template
-- reusable UI kit
-- open-source package
+This project is not provided as:
+
+
+- an open-source package
+- reusable template
+- starter project
 
 
 Internal configuration, credentials, and deployment secrets are intentionally excluded.
@@ -314,34 +434,66 @@ Internal configuration, credentials, and deployment secrets are intentionally ex
 
 ---
 
-# Engineering Status
+
+# Security Notice
+
+
+This repository does not contain:
+
+
+- production credentials
+- private environment variables
+- authentication secrets
+- infrastructure keys
+
+
+Public repository access does not grant permission to reuse protected materials.
+
+
+---
+
+
+# Version
 
 
 ```text
-Frontend Interface              COMPLETE
+SHREYANSH.SYS v1.0
 
-Responsive Design               COMPLETE
-
-Secure Contact Gateway          COMPLETE
-
-Email Verification              COMPLETE
-
-Database Integration            COMPLETE
-
-Admin Authentication            COMPLETE
-
-Security Logging                COMPLETE
-
-Production Deployment           COMPLETE
+Release Status:
+Production
 ```
 
 
 ---
 
+
+# Project Keywords
+
+
+```text
+Software Engineering Portfolio
+Full Stack Developer Portfolio
+React Developer Portfolio
+TypeScript Application
+Cybersecurity Portfolio
+AI Engineer Portfolio
+Secure Web Application
+Authentication System
+PostgreSQL Application
+Prisma ORM Project
+Serverless Architecture
+Modern Web Development
+```
+
+
+---
+
+
 # Author
 
 
-**Shreyansh Jain**
+## Shreyansh Jain
+
 
 Software Engineering • AI Development • Cybersecurity
 
@@ -364,6 +516,7 @@ jshreyansh962@gmail.com
 
 ---
 
+
 # License
 
 
@@ -371,14 +524,18 @@ Copyright © 2026 Shreyansh Jain.
 
 All Rights Reserved.
 
-This repository is provided publicly for portfolio demonstration and evaluation purposes only.
 
-No permission is granted to copy, modify, distribute, sublicense, or reuse any source code, design system, assets, or implementation details without explicit written permission.
+This repository is provided publicly only for portfolio demonstration, technical evaluation, and review purposes.
 
-The availability of this repository does not constitute an open-source license.
+
+No permission is granted to copy, modify, redistribute, sublicense, sell, or reuse the source code, design system, assets, architecture, or implementation without explicit written permission.
+
+
+The public availability of this repository does not represent an open-source license.
 
 
 ---
+
 
 <div align="center">
 
