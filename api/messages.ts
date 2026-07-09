@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 
 import { prisma } from "./lib/prisma.js";
 
-import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security";
+import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security.js";
 
 /*
 |--------------------------------------------------------------------------

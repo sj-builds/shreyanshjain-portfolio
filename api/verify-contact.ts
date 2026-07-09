@@ -2,11 +2,11 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 import { prisma } from "./lib/prisma.js";
 
-import { hashToken, secureCompare, isExpired } from "../src/lib/token";
+import { hashToken, secureCompare, isExpired } from "../src/lib/token.js";
 
-import { sendContactNotification } from "../src/lib/mail";
+import { sendContactNotification } from "../src/lib/mail.js";
 
-import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security";
+import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security.js";
 
 export default async function handler(
   req: VercelRequest,

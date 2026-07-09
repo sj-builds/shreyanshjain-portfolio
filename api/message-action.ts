@@ -8,7 +8,7 @@ import { z } from "zod";
 
 import { prisma } from "./lib/prisma.js";
 
-import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security";
+import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security.js";
 
 if (!process.env.JWT_SECRET) {
   throw new Error("JWT ENV MISSING");

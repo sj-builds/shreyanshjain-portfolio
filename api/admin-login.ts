@@ -8,7 +8,7 @@ import { authenticator } from "@otplib/preset-default";
 
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security";
+import { logSecurityEvent, SECURITY_EVENTS } from "../src/lib/security.js";
 
 /*
 |--------------------------------------------------------------------------

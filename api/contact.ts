@@ -4,9 +4,9 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 import { prisma } from "./lib/prisma.js";
 
-import { sendVerificationEmail } from "../src/lib/mail";
+import { sendVerificationEmail } from "../src/lib/mail.js";
 
-import { generateSecureToken, hashToken, createExpiry } from "../src/lib/token";
+import { generateSecureToken, hashToken, createExpiry } from "../src/lib/token.js";
 
 import {
   checkRateLimit,
@@ -14,9 +14,9 @@ import {
   logSecurityEvent,
   sanitizeInput,
   SECURITY_EVENTS,
-} from "../src/lib/security";
+} from "../src/lib/security.js";
 
-import { contactSchema } from "../src/lib/validation";
+import { contactSchema } from "../src/lib/validation.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
