@@ -1,17 +1,22 @@
 {
+  "id": "/",
   "name": "SHREYANSH.SYS",
-  "short_name": "SHREYANSH",
-  "description": "Software engineering and cybersecurity portfolio of Shreyansh Jain.",
+  "short_name": "SJ",
+  "description": "Official software engineering, AI, and cybersecurity portfolio of Shreyansh Jain.",
 
+  "lang": "en",
   "start_url": "/",
   "scope": "/",
 
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+
+  "orientation": "portrait-primary",
 
   "background_color": "#05070a",
   "theme_color": "#05070a",
 
-  "orientation": "portrait-primary",
+  "categories": ["portfolio", "developer", "technology", "productivity"],
 
   "icons": [
     {

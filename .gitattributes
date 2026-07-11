@@ -11,6 +11,7 @@
 *.html text eol=lf
 *.md text eol=lf
 *.prisma text eol=lf
+*.svg text eol=lf
 
 # Scripts
 *.sh text eol=lf
