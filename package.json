@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
-    "@types/bcryptjs": "^2.4.6",
+    "@types/bcryptjs": "^3.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.20.0",
     "@types/nodemailer": "^8.0.1",
